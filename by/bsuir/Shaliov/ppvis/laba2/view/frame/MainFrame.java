@@ -1,5 +1,6 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.frame;
 
+import by.bsuir.Shaliov.ppvis.laba2.controller.MainFrameController;
 import by.bsuir.Shaliov.ppvis.laba2.view.bar.*;
 import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
 
@@ -32,6 +33,9 @@ public class MainFrame extends JFrame {
 
         TableComponent tableComponent = new TableComponent();
         add(tableComponent.getScrollPane());
+
+        MainFrameController mainFrameController = MainFrameController.getInstance();
+        mainFrameController.setMainFrame(this);
 
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

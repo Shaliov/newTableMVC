@@ -1,19 +1,41 @@
 package by.bsuir.Shaliov.ppvis.laba2.model;
 
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
+import by.bsuir.Shaliov.ppvis.laba2.view.dialog.AddDialog;
 
 import javax.swing.table.AbstractTableModel;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Andrey on 5/30/2016.
  */
 public class TableModel extends AbstractTableModel {
-
+    private static TableModel instance = null;
     private DBStorage dbStorage = DBStorage.getInstance();
     private List<Teacher> teacherList = dbStorage.getTeacherList() ;
     public static final int column = 5;
+
+
+    public TableModel() {
+
+    }
+
+    public TableModel(TableModel tableModel) {
+        instance = tableModel;
+    }
+
+
+    public static TableModel getInstance() {
+        if (instance == null) {
+            instance = new TableModel();
+        }
+        return instance;
+    }
+
+    public static void setInstance(TableModel instance) {
+        TableModel.instance = instance;
+    }
+
     public static final String columnNames[] = {
             "Факультет",
             "Название кафедры",
@@ -22,9 +44,7 @@ public class TableModel extends AbstractTableModel {
             "ученая степень"
     };
 
-    public TableModel() {
 
-    }
 
     @Override
     public String getColumnName(int column) {
