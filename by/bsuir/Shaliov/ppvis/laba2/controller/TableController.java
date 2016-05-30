@@ -10,15 +10,9 @@ public class TableController {
     private static TableController instance = null;
     private TableModel tableModel = TableModel.getInstance();
 
-    public TableController() {
+    private TableController() {
 
     }
-
-    public TableController(TableController tableController) {
-        instance = tableController;
-    }
-
-
 
     public void refresh() {
         tableModel.fireTableDataChanged();
@@ -35,9 +29,5 @@ public class TableController {
             instance = new TableController();
         }
         return instance;
-    }
-
-    public static void setInstance(TableController instance) {
-        TableController.instance = instance;
     }
 }

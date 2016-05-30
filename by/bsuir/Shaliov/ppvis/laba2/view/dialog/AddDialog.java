@@ -47,6 +47,7 @@ public class AddDialog extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(!(fields.getName().getText() + fields.getSecondaryName().getText() +
                         fields.getMiddleName().getText()).equals("")) {
+                    // сам то разрберёшься через час что здесь написано
                     addDialogController.addTeacherToDB(
                             fields.getFaculty().getSelectedItem(),
                             fields.getDepartmentName().getSelectedItem(),
@@ -57,6 +58,8 @@ public class AddDialog extends JFrame {
                             fields.getAcademicDegree().getSelectedItem());
 
                 }
+
+                // это делается не так. не нужно textField в отдельный класс сбрасывать, а ещё и геттеры и сеттеры к ним применять
                 fields.getName().setText("");
                 fields.getSecondaryName().setText("");
                 fields.getMiddleName().setText("");

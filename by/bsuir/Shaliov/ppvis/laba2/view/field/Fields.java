@@ -1,8 +1,8 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.field;
 
-import by.bsuir.Shaliov.ppvis.laba2.enumeration.NameOfAcademicDegree;
+import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicDegrees;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.NameOfAcademicTitle;
-import by.bsuir.Shaliov.ppvis.laba2.enumeration.NameOfDepartment;
+import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.NameOfFaculty;
 
 import javax.swing.*;
@@ -20,10 +20,10 @@ public class Fields {
     private JComboBox faculty;
     private JComboBox academicTitle;
     private JComboBox academicDegree;
-    private NameOfDepartment nameOfDepartment;
+    private Departments nameOfDepartment;
     private NameOfFaculty nameOfFaculty;
     private NameOfAcademicTitle nameOfAcademicTitle;
-    private NameOfAcademicDegree nameOfAcademicDegree;
+    private AcademicDegrees academicDegrees;
 
     public Fields() {
 
@@ -104,7 +104,7 @@ public class Fields {
         Box academicDegreeBox = Box.createHorizontalBox();
         JLabel academicDegreeLabel = new JLabel("ученая степень:");
         academicDegreeLabel.setPreferredSize(new Dimension(130, academicDegreeLabel.getHeight()));
-        academicDegree = new JComboBox(nameOfAcademicDegree.values());
+        academicDegree = new JComboBox(academicDegrees.values());
 
         academicDegreeBox.add(academicDegreeLabel);
         academicDegreeBox.add(Box.createHorizontalStrut(6));
@@ -144,7 +144,7 @@ public class Fields {
         return academicDegree;
     }
 
-    public NameOfDepartment getNameOfDepartment() {
+    public Departments getNameOfDepartment() {
         return nameOfDepartment;
     }
 
@@ -156,8 +156,8 @@ public class Fields {
         return nameOfAcademicTitle;
     }
 
-    public NameOfAcademicDegree getNameOfAcademicDegree() {
-        return nameOfAcademicDegree;
+    public AcademicDegrees getAcademicDegrees() {
+        return academicDegrees;
     }
 
 }

@@ -12,20 +12,13 @@ public class DBStorage {
     private static DBStorage instance = null;
     private List<Teacher> teacherList = new ArrayList<>();
 
-    public DBStorage() {
+    private DBStorage() {
 
-    }
-
-    public DBStorage(DBStorage dbStorage) {
-        instance = dbStorage;
     }
 
     public void add(Teacher teacher) {
         teacherList.add(teacher);
     }
-
-
-
 
     public static DBStorage getInstance() {
         if (instance == null) {
@@ -34,15 +27,9 @@ public class DBStorage {
         return instance;
     }
 
-    public static void setInstance(DBStorage instance) {
-        DBStorage.instance = instance;
-    }
 
     public List<Teacher> getTeacherList() {
         return teacherList;
     }
 
-    public void setTeacherList(List<Teacher> teacherList) {
-        this.teacherList = teacherList;
-    }
 }

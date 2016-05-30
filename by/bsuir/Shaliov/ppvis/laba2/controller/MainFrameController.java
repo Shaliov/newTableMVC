@@ -13,16 +13,13 @@ public class MainFrameController {
     private MainFrame mainFrame;
     private AddDialog addDialog;
 
-    public MainFrameController() {
-
-    }
-
-    public MainFrameController(MainFrameController mainFrameController) {
-        instance = mainFrameController;
+    private MainFrameController() {
     }
 
     public void newAddDialog() {
-        addDialog = new AddDialog();
+        if (addDialog == null) {
+            addDialog = new AddDialog();
+        }
         addDialog.setVisible(true);
     }
 
@@ -31,25 +28,11 @@ public class MainFrameController {
     }
 
 
-
-
-
-
-
-
-
-
-
-
     public static MainFrameController getInstance() {
         if (instance == null) {
             instance = new MainFrameController();
         }
         return instance;
-    }
-
-    public static void setInstance(MainFrameController instance) {
-        MainFrameController.instance = instance;
     }
 
     public void setMainFrame(MainFrame mainFrame) {

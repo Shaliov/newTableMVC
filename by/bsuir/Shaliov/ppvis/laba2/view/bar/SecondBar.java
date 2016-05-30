@@ -9,10 +9,10 @@ import java.awt.event.ActionEvent;
 public class SecondBar extends JToolBar {
 
     public SecondBar() {
-        addBarPage(this);
+        addBarPage();
     }
 
-    private void addBarPage(JToolBar secondBar) {
+    private void addBarPage() {
         AbstractAction first = new AbstractAction("first", new ImageIcon("src\\resources\\first.png")) {
             public void actionPerformed(ActionEvent event) {
 
@@ -36,11 +36,11 @@ public class SecondBar extends JToolBar {
 
 
 
-        secondBar.add(first);
-        secondBar.add(prev);
+        add(first);
+        add(prev);
 //        secondBar.add(mainFrame.getPage());
-        secondBar.add(next);
-        secondBar.add(last);
+        add(next);
+        add(last);
     }
 
     private void addSlider() {

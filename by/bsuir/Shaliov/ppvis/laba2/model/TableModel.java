@@ -12,6 +12,7 @@ import java.util.List;
 public class TableModel extends AbstractTableModel {
     private static TableModel instance = null;
     private DBStorage dbStorage = DBStorage.getInstance();
+    //в dbStorage seteacherlist быть не должно, иначе мы не можем гарантировать что здесь и там - один и тот же список
     private List<Teacher> teacherList = dbStorage.getTeacherList() ;
     public static final int column = 5;
 
@@ -25,6 +26,7 @@ public class TableModel extends AbstractTableModel {
     }
 
 
+    // зачем если конструкторы public
     public static TableModel getInstance() {
         if (instance == null) {
             instance = new TableModel();
@@ -32,6 +34,7 @@ public class TableModel extends AbstractTableModel {
         return instance;
     }
 
+    // а это что за чудо
     public static void setInstance(TableModel instance) {
         TableModel.instance = instance;
     }

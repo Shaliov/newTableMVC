@@ -16,13 +16,10 @@ public class AddDialogController {
     private MainFrameController mainFrameController = MainFrameController.getInstance();
 
 
-    public AddDialogController() {
+    private AddDialogController() {
     }
 
-    public AddDialogController(AddDialogController addDialogController) {
-        instance = addDialogController;
-    }
-
+    // слишком много параметров - код корявый. максимум - 3
     public void addTeacherToDB(Object faculty, Object departmentName, String name, String secondaryName,
                                String middleName, Object academicTitle, Object academicDegree) {
         dbStorage.add(new Teacher(faculty, departmentName, name, secondaryName, middleName, academicTitle, academicDegree));
@@ -44,7 +41,4 @@ public class AddDialogController {
         return instance;
     }
 
-    public static void setInstance(AddDialogController instance) {
-        AddDialogController.instance = instance;
-    }
 }

@@ -2,6 +2,7 @@ package by.bsuir.Shaliov.ppvis.laba2.view.frame;
 
 import by.bsuir.Shaliov.ppvis.laba2.controller.MainFrameController;
 import by.bsuir.Shaliov.ppvis.laba2.view.bar.*;
+import by.bsuir.Shaliov.ppvis.laba2.view.bar.MenuBar;
 import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
 
 import javax.swing.*;
@@ -21,7 +22,7 @@ public class MainFrame extends JFrame {
         setSize(screenWidth / 2, screenHeight / 2);
         setLocation(screenWidth / 4, screenHeight / 4);
 
-        by.bsuir.Shaliov.ppvis.laba2.view.bar.MenuBar menuBar = new by.bsuir.Shaliov.ppvis.laba2.view.bar.MenuBar();
+        MenuBar menuBar = new MenuBar();
         add(menuBar, "North" );
 
         MainBar mainBar = new MainBar();
