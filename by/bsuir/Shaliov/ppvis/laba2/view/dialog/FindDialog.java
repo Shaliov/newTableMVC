@@ -1,5 +1,11 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.dialog;
 
+import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
+import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicTitles;
+import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
+import by.bsuir.Shaliov.ppvis.laba2.enumeration.Facultyes;
+import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
+import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
 import by.bsuir.Shaliov.ppvis.laba2.view.field.Fields;
 import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
 
@@ -8,17 +14,23 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
+import java.util.List;
 
 /**
  * Created by Andrey on 5/31/2016.
  */
 public class FindDialog extends JFrame {
     private TableComponent tableComponent;
+    private List<Teacher> teachers;
+    private Fields fields;
+    private DBStorage dbStorage = DBStorage.getInstance();
+    private TableController tableController = TableController.getInstance();
 
     public FindDialog() {
         setName("Введите данные преподавателя");
         Box boxPanel = Box.createVerticalBox();
-        Fields fields = new Fields();
+        fields = new Fields();
 
         fields.fio(boxPanel);
         fields.departmentName(boxPanel);
@@ -27,7 +39,8 @@ public class FindDialog extends JFrame {
         fields.academicDegree(boxPanel);
 
 
-        tableComponent = new TableComponent();
+        teachers = new ArrayList<>();
+        tableComponent = new TableComponent(teachers);
         add(tableComponent.getScrollPane());
 
         JToolBar fieldBar = new JToolBar();
@@ -48,7 +61,17 @@ public class FindDialog extends JFrame {
 
     private void findButtons(JToolBar secondBar) {
         AbstractAction findFioDepartmentName = new AbstractAction("ФИО + кафедра") {
-            public void actionPerformed(ActionEvent event) {
+            public void actionPerformed(ActionEvent e) {
+                teachers.clear();
+                String fio = fields.getName().getText() + " " + fields.getSecondaryName().getText() + " " + fields.getMiddleName().getText();
+                for(Teacher teacher : dbStorage.getTeacherList() ){
+                    if (teacher.getFio().equals(fio)
+                            && teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentName().getSelectedItem().toString()).getName()) {
+                        teachers.add(teacher);
+                    }
+                }
+                tableController.refresh();
+                repaint();
 
             }
         };
@@ -56,6 +79,15 @@ public class FindDialog extends JFrame {
         secondBar.addSeparator();
         AbstractAction findAcademicTitleDepartmentName = new AbstractAction("кафедра + учёное звание") {
             public void actionPerformed(ActionEvent event) {
+                teachers.clear();
+                for(Teacher teacher : dbStorage.getTeacherList() ) {
+                    if (teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentName().getSelectedItem().toString()).getName()
+                            && teacher.getAcademicTitle() == AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString())) {
+                        teachers.add(teacher);
+                    }
+                }
+                tableController.refresh();
+                repaint();
 
             }
         };
@@ -63,6 +95,15 @@ public class FindDialog extends JFrame {
         secondBar.addSeparator();
         AbstractAction findFacultyDepartmentName = new AbstractAction("факультет + кафедра") {
             public void actionPerformed(ActionEvent event) {
+                teachers.clear();
+                for(Teacher teacher : dbStorage.getTeacherList() ){
+                    if (teacher.getFaculty() == Facultyes.valueOf(fields.getFaculty().getSelectedItem().toString()).getName()
+                            && teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentName().getSelectedItem().toString()).getName()) {
+                        teachers.add(teacher);
+                    }
+                }
+                tableController.refresh();
+                repaint();
 
             }
         };
@@ -77,4 +118,5 @@ public class FindDialog extends JFrame {
         secondBar.addSeparator(new Dimension(300, secondBar.getHeight()));
         secondBar.add(cancelButton);
     }
+
 }

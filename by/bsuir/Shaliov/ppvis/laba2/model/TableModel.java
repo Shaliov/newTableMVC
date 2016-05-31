@@ -21,6 +21,10 @@ public class TableModel extends AbstractTableModel {
     private TableModel() {
     }
 
+    public TableModel(List<Teacher> teachers) {
+        teacherList = teachers;
+    }
+
     public static final String columnNames[] = {
             ColumnNames.FACULTY.getName(),
             ColumnNames.DEPARTMENT_NAME.getName(),
