@@ -22,6 +22,7 @@ public class TableModel extends AbstractTableModel {
     }
 
     public TableModel(List<Teacher> teachers) {
+        instance = getInstance();
         teacherList = teachers;
     }
 

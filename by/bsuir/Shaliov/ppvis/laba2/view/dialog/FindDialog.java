@@ -6,6 +6,7 @@ import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Facultyes;
 import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
+import by.bsuir.Shaliov.ppvis.laba2.view.bar.SecondBar;
 import by.bsuir.Shaliov.ppvis.laba2.view.field.Fields;
 import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
 
@@ -26,6 +27,7 @@ public class FindDialog extends JFrame {
     private Fields fields;
     private DBStorage dbStorage = DBStorage.getInstance();
     private TableController tableController = TableController.getInstance();
+    private SecondBar secondBar;
 
     public FindDialog() {
         setName("Введите данные преподавателя");
@@ -49,13 +51,16 @@ public class FindDialog extends JFrame {
         add(boxPanel, "West");
 
         JToolBar findBar = new JToolBar();
-        findBar.setOrientation(SwingConstants.HORIZONTAL);
-        add(findBar, "South");
+        findBar.setOrientation(SwingConstants.VERTICAL);
+        add(findBar, "East");
         findButtons(findBar);
 
+        SecondBar secondBar = new SecondBar();
+        add(secondBar, "South");
 
-        setSize(900, 320);
-        setUndecorated(true);
+
+        setSize(900, 350);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -115,7 +120,7 @@ public class FindDialog extends JFrame {
                 dispose();
             }
         });
-        secondBar.addSeparator(new Dimension(300, secondBar.getHeight()));
+        secondBar.addSeparator(new Dimension(5, 100));
         secondBar.add(cancelButton);
     }
 

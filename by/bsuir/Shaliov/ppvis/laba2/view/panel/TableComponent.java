@@ -3,6 +3,7 @@ package by.bsuir.Shaliov.ppvis.laba2.view.panel;
 
 import by.bsuir.Shaliov.ppvis.laba2.model.TableModel;
 import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
+import by.bsuir.Shaliov.ppvis.laba2.view.bar.SecondBar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ import java.util.*;
  */
 public class TableComponent extends JPanel {
 
-    JScrollPane scrollPane;
+    private JScrollPane scrollPane;
 
     public TableComponent() {
         TableModel tableModel = TableModel.getInstance();
@@ -41,4 +42,5 @@ public class TableComponent extends JPanel {
     public JScrollPane getScrollPane() {
         return scrollPane;
     }
+
 }
