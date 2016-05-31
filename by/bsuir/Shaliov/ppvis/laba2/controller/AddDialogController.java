@@ -19,15 +19,12 @@ public class AddDialogController {
     private AddDialogController() {
     }
 
-    // слишком много параметров - код корявый. максимум - 3
     public void addTeacherToDB(Object faculty, Object departmentName, String name, String secondaryName,
                                String middleName, Object academicTitle, Object academicDegree) {
         dbStorage.add(new Teacher(faculty, departmentName, name, secondaryName, middleName, academicTitle, academicDegree));
         tableController.refresh();
         mainFrameController.refresh();
     }
-
-
 
 
 

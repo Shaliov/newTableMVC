@@ -20,14 +20,14 @@ public class TableController {
 
 
 
-
-
-
-
     public static TableController getInstance() {
         if (instance == null) {
             instance = new TableController();
         }
         return instance;
+    }
+
+    public void setTableModel(TableModel tableModel) {
+        this.tableModel = tableModel;
     }
 }

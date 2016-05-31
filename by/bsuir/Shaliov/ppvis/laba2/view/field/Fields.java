@@ -1,9 +1,9 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.field;
 
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicDegrees;
-import by.bsuir.Shaliov.ppvis.laba2.enumeration.NameOfAcademicTitle;
+import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicTitles;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
-import by.bsuir.Shaliov.ppvis.laba2.enumeration.NameOfFaculty;
+import by.bsuir.Shaliov.ppvis.laba2.enumeration.Facultyes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,8 +21,8 @@ public class Fields {
     private JComboBox academicTitle;
     private JComboBox academicDegree;
     private Departments nameOfDepartment;
-    private NameOfFaculty nameOfFaculty;
-    private NameOfAcademicTitle nameOfAcademicTitle;
+    private Facultyes facultyes;
+    private AcademicTitles academicTitles;
     private AcademicDegrees academicDegrees;
 
     public Fields() {
@@ -81,7 +81,7 @@ public class Fields {
         Box facultyBox = Box.createHorizontalBox();
         JLabel facultyLabel = new JLabel("Факультет:");
         facultyLabel.setPreferredSize(new Dimension(130, facultyLabel.getHeight()));
-        faculty = new JComboBox(nameOfFaculty.values());
+        faculty = new JComboBox(facultyes.values());
 
         facultyBox.add(facultyLabel);
         facultyBox.add(Box.createHorizontalStrut(6));
@@ -93,7 +93,7 @@ public class Fields {
         Box academicTitleBox = Box.createHorizontalBox();
         JLabel academicTitleLabel = new JLabel("ученое звание:");
         academicTitleLabel.setPreferredSize(new Dimension(130, academicTitleLabel.getHeight()));
-        academicTitle = new JComboBox(nameOfAcademicTitle.values());
+        academicTitle = new JComboBox(academicTitles.values());
 
         academicTitleBox.add(academicTitleLabel);
         academicTitleBox.add(Box.createHorizontalStrut(6));
@@ -148,12 +148,12 @@ public class Fields {
         return nameOfDepartment;
     }
 
-    public NameOfFaculty getNameOfFaculty() {
-        return nameOfFaculty;
+    public Facultyes getFacultyes() {
+        return facultyes;
     }
 
-    public NameOfAcademicTitle getNameOfAcademicTitle() {
-        return nameOfAcademicTitle;
+    public AcademicTitles getAcademicTitles() {
+        return academicTitles;
     }
 
     public AcademicDegrees getAcademicDegrees() {

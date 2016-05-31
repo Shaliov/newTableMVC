@@ -3,15 +3,15 @@ package by.bsuir.Shaliov.ppvis.laba2.enumeration;
 /**
  * Created by Andrey on 5/31/2016.
  */
-public enum AcademicDegrees {
-    кн("кандитат наук"),
-    дн("доктор наук");
+public enum AcademicTitles {
+    доцент("доцент"),
+    профессор("профессор");
 
     private String name;
 
-    private AcademicDegrees() {}
+    private AcademicTitles() {}
 
-    AcademicDegrees(String name) {
+    AcademicTitles(String name) {
         this.name = name;
     }
 

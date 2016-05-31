@@ -1,6 +1,8 @@
 package by.bsuir.Shaliov.ppvis.laba2.controller;
 
 import by.bsuir.Shaliov.ppvis.laba2.view.dialog.AddDialog;
+import by.bsuir.Shaliov.ppvis.laba2.view.dialog.DeleteDialog;
+import by.bsuir.Shaliov.ppvis.laba2.view.dialog.FindDialog;
 import by.bsuir.Shaliov.ppvis.laba2.view.frame.MainFrame;
 
 import java.util.Base64;
@@ -12,6 +14,8 @@ public class MainFrameController {
     private static MainFrameController instance = null;
     private MainFrame mainFrame;
     private AddDialog addDialog;
+    private DeleteDialog deleteDialog;
+    private FindDialog findDialog;
 
     private MainFrameController() {
     }
@@ -21,6 +25,20 @@ public class MainFrameController {
             addDialog = new AddDialog();
         }
         addDialog.setVisible(true);
+    }
+
+    public void newFindDealog() {
+        if(findDialog == null) {
+            findDialog = new FindDialog();
+        }
+        findDialog.setVisible(true);
+    }
+
+    public void newDeleteDialog() {
+        if(deleteDialog == null) {
+            deleteDialog = new DeleteDialog();
+        }
+        deleteDialog.setVisible(true);
     }
 
     public void refresh() {

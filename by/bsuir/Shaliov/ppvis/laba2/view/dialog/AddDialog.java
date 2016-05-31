@@ -1,6 +1,10 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.dialog;
 
 import by.bsuir.Shaliov.ppvis.laba2.controller.AddDialogController;
+import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicDegrees;
+import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicTitles;
+import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
+import by.bsuir.Shaliov.ppvis.laba2.enumeration.Facultyes;
 import by.bsuir.Shaliov.ppvis.laba2.view.field.Fields;
 
 import javax.swing.*;
@@ -47,26 +51,19 @@ public class AddDialog extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(!(fields.getName().getText() + fields.getSecondaryName().getText() +
                         fields.getMiddleName().getText()).equals("")) {
-                    // сам то разрберёшься через час что здесь написано
                     addDialogController.addTeacherToDB(
-                            fields.getFaculty().getSelectedItem(),
-                            fields.getDepartmentName().getSelectedItem(),
+                            Facultyes.valueOf(fields.getFaculty().getSelectedItem().toString()).getName(),
+                            Departments.valueOf(fields.getDepartmentName().getSelectedItem().toString()).getName(),
                             fields.getName().getText(),
                             fields.getSecondaryName().getText(),
                             fields.getMiddleName().getText(),
-                            fields.getAcademicTitle().getSelectedItem(),
-                            fields.getAcademicDegree().getSelectedItem());
+                            AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString()),
+                            AcademicDegrees.valueOf(fields.getAcademicDegree().getSelectedItem().toString()));
 
                 }
-
-                // это делается не так. не нужно textField в отдельный класс сбрасывать, а ещё и геттеры и сеттеры к ним применять
                 fields.getName().setText("");
                 fields.getSecondaryName().setText("");
                 fields.getMiddleName().setText("");
-//                fields.getDepartmentName().setSelectedIndex(0);
-//                fields.getFaculty().setSelectedIndex(0);
-//                fields.getAcademicDegree().setSelectedIndex(0);
-//                fields.getAcademicTitle().setSelectedIndex(0);
 
             }
         });

@@ -14,7 +14,7 @@ public class TableComponent extends JPanel {
     JScrollPane scrollPane;
 
     public TableComponent() {
-        TableModel tableModel = new TableModel();
+        TableModel tableModel = TableModel.getInstance();
         JTable table = new JTable(tableModel);
         Dimension dimension = new Dimension(100, 1000);
         table.setPreferredSize(dimension);

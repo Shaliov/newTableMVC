@@ -38,7 +38,7 @@ public class SecondBar extends JToolBar {
 
         add(first);
         add(prev);
-//        secondBar.add(mainFrame.getPage());
+//        add(mainFrame.getPage());
         add(next);
         add(last);
     }

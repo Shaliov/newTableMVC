@@ -20,6 +20,10 @@ public class DBStorage {
         teacherList.add(teacher);
     }
 
+    public void clear() {
+        teacherList.clear();
+    }
+
     public static DBStorage getInstance() {
         if (instance == null) {
             instance = new DBStorage();

@@ -12,9 +12,9 @@ public class MainBar extends JToolBar {
     private MainFrameController mainFrameController = MainFrameController.getInstance();
 
     public MainBar() {
-        addBarMain(this);
+        addBarMain();
     }
-    private void addBarMain(JToolBar bar) {
+    private void addBarMain() {
         AbstractAction newEntry = new AbstractAction("new entry ", new ImageIcon("src\\resources\\add.png")) {
             public void actionPerformed(ActionEvent event) {
                 mainFrameController.newAddDialog();
@@ -22,17 +22,16 @@ public class MainBar extends JToolBar {
         };
         AbstractAction deleteEntry = new AbstractAction("delete entry", new ImageIcon("src\\resources\\remove.png")) {
             public void actionPerformed(ActionEvent event) {
-
-
+                mainFrameController.newDeleteDialog();
             }
         };
         AbstractAction findEntry = new AbstractAction("find entry", new ImageIcon("src\\resources\\search.png")) {
             public void actionPerformed(ActionEvent event) {
-
+                mainFrameController.newFindDealog();
             }
         };
-        bar.add(newEntry);
-        bar.add(deleteEntry);
-        bar.add(findEntry);
+        add(newEntry);
+        add(deleteEntry);
+        add(findEntry);
     }
 }
