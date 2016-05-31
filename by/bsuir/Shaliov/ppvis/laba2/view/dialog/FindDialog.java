@@ -28,6 +28,7 @@ public class FindDialog extends JFrame {
     private DBStorage dbStorage = DBStorage.getInstance();
     private TableController tableController = TableController.getInstance();
     private SecondBar secondBar;
+    
 
     public FindDialog() {
         setName("Введите данные преподавателя");
