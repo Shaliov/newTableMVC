@@ -13,6 +13,7 @@ public enum Departments {
     ИР("Информационных радиотехнологий");
 
     private String name;
+
     Departments() {
     }
 

@@ -8,14 +8,13 @@ import by.bsuir.Shaliov.ppvis.laba2.model.TableModel;
  */
 public class TableController {
     private static TableController instance = null;
-    private TableModel tableModel = TableModel.getInstance();
 
     private TableController() {
 
     }
 
     public void refresh() {
-        tableModel.fireTableDataChanged();
+        TableModel.getInstance().fireTableDataChanged();
     }
 
 
@@ -27,7 +26,4 @@ public class TableController {
         return instance;
     }
 
-    public void setTableModel(TableModel tableModel) {
-        this.tableModel = tableModel;
-    }
 }

@@ -6,6 +6,7 @@ import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
 import by.bsuir.Shaliov.ppvis.laba2.view.dialog.AddDialog;
 
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,4 +64,19 @@ public class TableModel extends AbstractTableModel {
         return columnNames;
     }
 
+    public List<Teacher> getTeacherList() {
+        return teacherList;
+    }
+
+    public List<Teacher> getTeacherList(int startIndex, int endIndex) {
+        List<Teacher> result = new ArrayList<>();
+        for(int i = startIndex; i < endIndex; i++) {
+            result.add(teacherList.get(i));
+        }
+        return result;
+    }
+
+    public void setTeacherList(List<Teacher> teacherList) {
+        this.teacherList = teacherList;
+    }
 }

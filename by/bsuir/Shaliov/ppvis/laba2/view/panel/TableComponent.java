@@ -14,9 +14,17 @@ import java.util.*;
  */
 public class TableComponent extends JPanel {
 
+    private static TableComponent instance = null;
     private JScrollPane scrollPane;
 
-    public TableComponent() {
+    public static TableComponent getInstance() {
+        if (instance == null) {
+            instance = new TableComponent();
+        }
+        return instance;
+    }
+
+    private TableComponent() {
         TableModel tableModel = TableModel.getInstance();
         JTable table = new JTable(tableModel);
         Dimension dimension = new Dimension(100, 1000);

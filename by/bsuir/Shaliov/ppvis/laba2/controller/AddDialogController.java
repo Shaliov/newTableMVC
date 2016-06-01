@@ -27,10 +27,6 @@ public class AddDialogController {
     }
 
 
-
-
-
-
     public static AddDialogController getInstance() {
         if (instance == null) {
             instance = new AddDialogController();

@@ -4,6 +4,7 @@ import by.bsuir.Shaliov.ppvis.laba2.controller.MainFrameController;
 import by.bsuir.Shaliov.ppvis.laba2.view.bar.*;
 import by.bsuir.Shaliov.ppvis.laba2.view.bar.MenuBar;
 import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
+import javafx.scene.control.Tab;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +24,7 @@ public class MainFrame extends JFrame {
         setLocation(screenWidth / 4, screenHeight / 4);
 
         MenuBar menuBar = new MenuBar();
-        add(menuBar, "North" );
+        add(menuBar, "North");
 
         MainBar mainBar = new MainBar();
         mainBar.setOrientation(SwingConstants.VERTICAL);
@@ -32,7 +33,7 @@ public class MainFrame extends JFrame {
         SecondBar secondBar = new SecondBar();
         add(secondBar, "South");
 
-        TableComponent tableComponent = new TableComponent();
+        TableComponent tableComponent = TableComponent.getInstance();
         add(tableComponent.getScrollPane());
 
         MainFrameController mainFrameController = MainFrameController.getInstance();

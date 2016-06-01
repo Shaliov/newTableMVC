@@ -4,7 +4,9 @@ import by.bsuir.Shaliov.ppvis.laba2.view.dialog.AddDialog;
 import by.bsuir.Shaliov.ppvis.laba2.view.dialog.DeleteDialog;
 import by.bsuir.Shaliov.ppvis.laba2.view.dialog.FindDialog;
 import by.bsuir.Shaliov.ppvis.laba2.view.frame.MainFrame;
+import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
 
+import javax.swing.*;
 import java.util.Base64;
 
 /**
@@ -42,6 +44,8 @@ public class MainFrameController {
     }
 
     public void refresh() {
+        TableComponent.getInstance().getScrollPane().repaint();
+        TableComponent.getInstance().revalidate();
         mainFrame.repaint();
     }
 

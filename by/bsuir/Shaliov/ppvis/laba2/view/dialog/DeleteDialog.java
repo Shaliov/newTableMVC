@@ -1,5 +1,7 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.dialog;
 
+import by.bsuir.Shaliov.ppvis.laba2.controller.MainFrameController;
+import by.bsuir.Shaliov.ppvis.laba2.controller.SecondBarController;
 import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicTitles;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
@@ -66,6 +68,9 @@ public class DeleteDialog extends JFrame {
                 fields.getName().setText("");
                 fields.getSecondaryName().setText("");
                 fields.getMiddleName().setText("");
+                tableController.refresh();
+                SecondBarController.getInstance().changeNumberOfPage();
+                MainFrameController.getInstance().refresh();
                 dispose();
             }
         });
@@ -96,7 +101,7 @@ public class DeleteDialog extends JFrame {
                         numberOfnoted++;
                     }
                 }
-                tableController.refresh();
+                SecondBarController.getInstance().changeNumberOfPage();
                 JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
                         null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
 
@@ -120,7 +125,7 @@ public class DeleteDialog extends JFrame {
                         numberOfnoted++;
                     }
                 }
-                tableController.refresh();
+                SecondBarController.getInstance().changeNumberOfPage();
                 JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
                         null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
 
@@ -140,7 +145,7 @@ public class DeleteDialog extends JFrame {
                         numberOfnoted++;
                     }
                 }
-                tableController.refresh();
+                SecondBarController.getInstance().changeNumberOfPage();
                 JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
                         null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
 

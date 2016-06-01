@@ -1,6 +1,7 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.dialog;
 
 import by.bsuir.Shaliov.ppvis.laba2.controller.AddDialogController;
+import by.bsuir.Shaliov.ppvis.laba2.controller.SecondBarController;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicDegrees;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicTitles;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
@@ -57,20 +58,24 @@ public class AddDialog extends JFrame {
                             fields.getName().getText(),
                             fields.getSecondaryName().getText(),
                             fields.getMiddleName().getText(),
-                            AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString()),
-                            AcademicDegrees.valueOf(fields.getAcademicDegree().getSelectedItem().toString()));
+                            AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString()).getName(),
+                            AcademicDegrees.valueOf(fields.getAcademicDegree().getSelectedItem().toString()).getName());
 
                 }
                 fields.getName().setText("");
                 fields.getSecondaryName().setText("");
                 fields.getMiddleName().setText("");
-
+                SecondBarController.getInstance().changeNumberOfPage();
             }
         });
         JButton cancelButton = new JButton("Закрыть");
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                fields.getName().setText("");
+                fields.getSecondaryName().setText("");
+                fields.getMiddleName().setText("");
+                SecondBarController.getInstance().changeNumberOfPage();
                 dispose();
             }
         });
