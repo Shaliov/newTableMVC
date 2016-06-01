@@ -52,8 +52,8 @@ public class SecondBar extends JToolBar {
         };
         AbstractAction next = new AbstractAction("next", new ImageIcon("src\\resources\\next.png")) {
             public void actionPerformed(ActionEvent event) {
-                if (DBStorage.getInstance().getTeacherList().size() % secondBarController.getRowOnPage() != 0) {
-                    lastPage = (int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() % secondBarController.getRowOnPage())) + 1;
+                if (DBStorage.getInstance().getTeacherList().size() % secondBarController.getRowOnPage() == 0) {
+                    lastPage = (int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / secondBarController.getRowOnPage()));
                     if (numberOfPage < lastPage) {
                         numberOfPage = numberOfPage + 1;
                         page.setText(String.valueOf(numberOfPage));
@@ -62,11 +62,10 @@ public class SecondBar extends JToolBar {
 
                     }
                 } else {
-                    lastPage = (int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() % secondBarController.getRowOnPage()));
+                    lastPage = (int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / secondBarController.getRowOnPage())) + 1;
                     if (numberOfPage + 1 == lastPage) {
                         numberOfPage = lastPage;
-                        page.setText(String.valueOf(numberOfPage));
-                        secondBarController.changeNumberOfPage(dbStorage.getTeacherList(dbStorage.getTeacherList().size() - secondBarController.getRowOnPage(),
+                        secondBarController.changeNumberOfPage(dbStorage.getTeacherList(secondBarController.getRowOnPage() * numberOfPage - secondBarController.getRowOnPage(),
                                 dbStorage.getTeacherList().size()));
                     } else if (numberOfPage < lastPage) {
                         numberOfPage = numberOfPage + 1;
@@ -82,12 +81,12 @@ public class SecondBar extends JToolBar {
         AbstractAction last = new AbstractAction("last", new ImageIcon("src\\resources\\last.png")) {
             public void actionPerformed(ActionEvent event) {
                 if (DBStorage.getInstance().getTeacherList().size() % secondBarController.getRowOnPage() == 0) {
-                    lastPage = (int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() % secondBarController.getRowOnPage())) + 1;
+                    lastPage = (int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / secondBarController.getRowOnPage()));
                     numberOfPage = lastPage;
                     secondBarController.changeNumberOfPage(dbStorage.getTeacherList(dbStorage.getTeacherList().size() - secondBarController.getRowOnPage(),
                             dbStorage.getTeacherList().size()));
                 } else {
-                    lastPage = (int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() % secondBarController.getRowOnPage()));
+                    lastPage = (int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / secondBarController.getRowOnPage())) + 1;
                     numberOfPage = lastPage;
                     secondBarController.changeNumberOfPage(dbStorage.getTeacherList(secondBarController.getRowOnPage() * numberOfPage - secondBarController.getRowOnPage(),
                             dbStorage.getTeacherList().size()));
