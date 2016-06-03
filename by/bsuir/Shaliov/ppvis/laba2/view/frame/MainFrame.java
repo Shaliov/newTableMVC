@@ -1,8 +1,10 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.frame;
 
+import by.bsuir.Shaliov.ppvis.laba2.controller.AddDialogController;
 import by.bsuir.Shaliov.ppvis.laba2.controller.MainFrameController;
 import by.bsuir.Shaliov.ppvis.laba2.view.bar.*;
 import by.bsuir.Shaliov.ppvis.laba2.view.bar.MenuBar;
+import by.bsuir.Shaliov.ppvis.laba2.view.dialog.AddDialog;
 import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
 import javafx.scene.control.Tab;
 
@@ -33,7 +35,9 @@ public class MainFrame extends JFrame {
         SecondBar secondBar = new SecondBar();
         add(secondBar, "South");
 
-        TableComponent tableComponent = TableComponent.getInstance();
+        TableComponent tableComponent = new TableComponent();
+        MainFrameController.getInstance().setTableComponent(tableComponent);
+        AddDialogController.getInstance().setTableComponent(tableComponent);
         add(tableComponent.getScrollPane());
 
         MainFrameController mainFrameController = MainFrameController.getInstance();

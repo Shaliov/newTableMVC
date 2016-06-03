@@ -18,6 +18,11 @@ public class MainFrameController {
     private AddDialog addDialog;
     private DeleteDialog deleteDialog;
     private FindDialog findDialog;
+    private TableComponent tableComponent;
+
+    public void setTableComponent(TableComponent tableComponent) {
+        this.tableComponent = tableComponent;
+    }
 
     private MainFrameController() {
     }
@@ -40,12 +45,13 @@ public class MainFrameController {
         if(deleteDialog == null) {
             deleteDialog = new DeleteDialog();
         }
+        deleteDialog.setTableComponent(tableComponent);
         deleteDialog.setVisible(true);
     }
 
-    public void refresh() {
-        TableComponent.getInstance().getScrollPane().repaint();
-        TableComponent.getInstance().revalidate();
+    public void refresh(TableComponent tableComponent) {
+        tableComponent.getScrollPane().repaint();
+        tableComponent.revalidate();
         mainFrame.repaint();
     }
 

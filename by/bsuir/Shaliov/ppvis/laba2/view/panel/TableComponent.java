@@ -14,17 +14,17 @@ import java.util.*;
  */
 public class TableComponent extends JPanel {
 
-    private static TableComponent instance = null;
+//    private static TableComponent instance = null;
     private JScrollPane scrollPane;
 
-    public static TableComponent getInstance() {
-        if (instance == null) {
-            instance = new TableComponent();
-        }
-        return instance;
-    }
+//    public static TableComponent getInstance() {
+//        if (instance == null) {
+//            instance = new TableComponent();
+//        }
+//        return instance;
+//    }
 
-    private TableComponent() {
+    public TableComponent() {
         TableModel tableModel = TableModel.getInstance();
         JTable table = new JTable(tableModel);
         Dimension dimension = new Dimension(100, 1000);
@@ -37,6 +37,7 @@ public class TableComponent extends JPanel {
 
     public TableComponent(java.util.List<Teacher> teacherList) {
         TableModel tableModel = new TableModel(teacherList);
+        tableModel.setTeacherList(teacherList);
         JTable table = new JTable(tableModel);
         Dimension dimension = new Dimension(100, 1000);
         table.setPreferredSize(dimension);

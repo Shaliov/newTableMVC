@@ -1,9 +1,7 @@
 package by.bsuir.Shaliov.ppvis.laba2.model;
 
-import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.ColumnNames;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
-import by.bsuir.Shaliov.ppvis.laba2.view.dialog.AddDialog;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
@@ -16,8 +14,16 @@ public class TableModel extends AbstractTableModel {
     private static TableModel instance = null;
     private DBStorage dbStorage = DBStorage.getInstance();
     private List<Teacher> teacherList = dbStorage.getTeacherList() ;
+    private List<Teacher> tempList  = dbStorage.getTeacherList() ;
     public static final int column = 5;
 
+    public List<Teacher> getTempList() {
+        return tempList;
+    }
+
+    public void setTempList(List<Teacher> tempList) {
+        this.tempList = tempList;
+    }
 
     private TableModel() {
     }
@@ -34,6 +40,8 @@ public class TableModel extends AbstractTableModel {
             ColumnNames.ACADEMIC_TITLE.getName(),
             ColumnNames.ACADEMIC_DEGREE.getName()
     };
+
+
 
 
     public static TableModel getInstance() {
@@ -68,10 +76,10 @@ public class TableModel extends AbstractTableModel {
         return teacherList;
     }
 
-    public List<Teacher> getTeacherList(int startIndex, int endIndex) {
+    public List<Teacher> getTempList(int startIndex, int endIndex) {
         List<Teacher> result = new ArrayList<>();
         for(int i = startIndex; i < endIndex; i++) {
-            result.add(teacherList.get(i));
+            result.add(dbStorage.getTeacherList().get(i));
         }
         return result;
     }

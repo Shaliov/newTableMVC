@@ -14,6 +14,7 @@ public class AddDialogController {
     private DBStorage dbStorage = DBStorage.getInstance();
     private TableController tableController = TableController.getInstance();
     private MainFrameController mainFrameController = MainFrameController.getInstance();
+    private TableComponent tableComponent;
 
 
     private AddDialogController() {
@@ -23,9 +24,12 @@ public class AddDialogController {
                                String middleName, Object academicTitle, Object academicDegree) {
         dbStorage.add(new Teacher(faculty, departmentName, name, secondaryName, middleName, academicTitle, academicDegree));
         tableController.refresh();
-        mainFrameController.refresh();
+        mainFrameController.refresh(tableComponent);
     }
 
+    public void setTableComponent(TableComponent tableComponent) {
+        this.tableComponent = tableComponent;
+    }
 
     public static AddDialogController getInstance() {
         if (instance == null) {

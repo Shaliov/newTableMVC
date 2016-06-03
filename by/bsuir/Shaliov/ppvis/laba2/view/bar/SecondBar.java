@@ -5,11 +5,11 @@ import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
 import by.bsuir.Shaliov.ppvis.laba2.model.TableModel;
 import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
+import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 
 /**
  * Created by Andrey on 5/30/2016.
@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class SecondBar extends JToolBar {
 
     private int numberOfPage = 1;
-    private int lastPage;
     private JLabel page;
     private JLabel sliderMark;
     private JSlider slider;
@@ -32,66 +31,31 @@ public class SecondBar extends JToolBar {
     public void addBarPage() {
         AbstractAction first = new AbstractAction("first", new ImageIcon("src\\resources\\first.png")) {
             public void actionPerformed(ActionEvent event) {
-                numberOfPage = 1;
-                page.setText(String.valueOf(numberOfPage));
-                secondBarController.changeNumberOfPage();
+
+                TableController.getInstance().firstPage();
+                page.setText(String.valueOf(SecondBarController.getInstance().getNumberOfPage()));
 
             }
         };
         AbstractAction prev = new AbstractAction("prev", new ImageIcon("src\\resources\\prev.png")) {
             public void actionPerformed(ActionEvent event) {
-                if (numberOfPage > 1) {
-                    numberOfPage = numberOfPage - 1;
-                    page.setText(String.valueOf(numberOfPage));
 
-                    secondBarController.changeNumberOfPage(dbStorage.getTeacherList(secondBarController.getRowOnPage() * numberOfPage - secondBarController.getRowOnPage(),
-                            secondBarController.getRowOnPage() * numberOfPage));
-                }
-
+                TableController.getInstance().prev();
+                page.setText(String.valueOf(SecondBarController.getInstance().getNumberOfPage()));
             }
         };
         AbstractAction next = new AbstractAction("next", new ImageIcon("src\\resources\\next.png")) {
             public void actionPerformed(ActionEvent event) {
-                if (DBStorage.getInstance().getTeacherList().size() % secondBarController.getRowOnPage() == 0) {
-                    lastPage = (int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / secondBarController.getRowOnPage()));
-                    if (numberOfPage < lastPage) {
-                        numberOfPage = numberOfPage + 1;
-                        page.setText(String.valueOf(numberOfPage));
-                        secondBarController.changeNumberOfPage(dbStorage.getTeacherList(secondBarController.getRowOnPage() * numberOfPage - secondBarController.getRowOnPage(),
-                                secondBarController.getRowOnPage() * numberOfPage));
 
-                    }
-                } else {
-                    lastPage = (int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / secondBarController.getRowOnPage())) + 1;
-                    if (numberOfPage + 1 == lastPage) {
-                        numberOfPage = lastPage;
-                        secondBarController.changeNumberOfPage(dbStorage.getTeacherList(secondBarController.getRowOnPage() * numberOfPage - secondBarController.getRowOnPage(),
-                                dbStorage.getTeacherList().size()));
-                    } else if (numberOfPage < lastPage) {
-                        numberOfPage = numberOfPage + 1;
-                        page.setText(String.valueOf(numberOfPage));
-                        secondBarController.changeNumberOfPage(dbStorage.getTeacherList(secondBarController.getRowOnPage() * numberOfPage - secondBarController.getRowOnPage(),
-                                secondBarController.getRowOnPage() * numberOfPage));
-
-                    }
-                }
-
+                TableController.getInstance().next();
+                page.setText(String.valueOf(SecondBarController.getInstance().getNumberOfPage()));
             }
         };
         AbstractAction last = new AbstractAction("last", new ImageIcon("src\\resources\\last.png")) {
             public void actionPerformed(ActionEvent event) {
-                if (DBStorage.getInstance().getTeacherList().size() % secondBarController.getRowOnPage() == 0) {
-                    lastPage = (int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / secondBarController.getRowOnPage()));
-                    numberOfPage = lastPage;
-                    secondBarController.changeNumberOfPage(dbStorage.getTeacherList(dbStorage.getTeacherList().size() - secondBarController.getRowOnPage(),
-                            dbStorage.getTeacherList().size()));
-                } else {
-                    lastPage = (int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / secondBarController.getRowOnPage())) + 1;
-                    numberOfPage = lastPage;
-                    secondBarController.changeNumberOfPage(dbStorage.getTeacherList(secondBarController.getRowOnPage() * numberOfPage - secondBarController.getRowOnPage(),
-                            dbStorage.getTeacherList().size()));
-                }
-                page.setText(String.valueOf(numberOfPage));
+
+                TableController.getInstance().lastPage();
+                page.setText(String.valueOf(SecondBarController.getInstance().getLastPage()));
 
 
             }
@@ -120,4 +84,5 @@ public class SecondBar extends JToolBar {
         add(slider);
         add(sliderMark);
     }
+
 }

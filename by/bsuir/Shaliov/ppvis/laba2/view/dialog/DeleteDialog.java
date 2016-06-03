@@ -9,6 +9,7 @@ import by.bsuir.Shaliov.ppvis.laba2.enumeration.Facultyes;
 import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
 import by.bsuir.Shaliov.ppvis.laba2.view.field.Fields;
+import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -24,6 +25,11 @@ public class DeleteDialog extends JFrame {
     private DBStorage dbStorage = DBStorage.getInstance();
     private Fields fields;
     private TableController tableController = TableController.getInstance();
+    private TableComponent tableComponent;
+
+    public void setTableComponent(TableComponent tableComponent) {
+        this.tableComponent = tableComponent;
+    }
 
     public DeleteDialog() {
         setName("Введите данные преподавателя");
@@ -70,7 +76,7 @@ public class DeleteDialog extends JFrame {
                 fields.getMiddleName().setText("");
                 tableController.refresh();
                 SecondBarController.getInstance().changeNumberOfPage();
-                MainFrameController.getInstance().refresh();
+                MainFrameController.getInstance().refresh(tableComponent);
                 dispose();
             }
         });
@@ -120,7 +126,7 @@ public class DeleteDialog extends JFrame {
                 for (Iterator<Teacher> teacherIterator = dbStorage.getTeacherList().iterator(); teacherIterator.hasNext();) {
                     Teacher teacher = teacherIterator.next();
                     if (teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentName().getSelectedItem().toString()).getName()
-                            && teacher.getAcademicTitle() == AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString()))  {
+                            && teacher.getAcademicTitle() == AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString()).getName())  {
                         teacherIterator.remove();
                         numberOfnoted++;
                     }

@@ -1,9 +1,11 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.dialog;
 
+import by.bsuir.Shaliov.ppvis.laba2.controller.SecondBarController;
 import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicTitles;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Facultyes;
+import by.bsuir.Shaliov.ppvis.laba2.model.TableModel;
 import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
 import by.bsuir.Shaliov.ppvis.laba2.view.bar.SecondBar;
@@ -44,6 +46,7 @@ public class FindDialog extends JFrame {
 
         teachers = new ArrayList<>();
         tableComponent = new TableComponent(teachers);
+
         add(tableComponent.getScrollPane());
 
         JToolBar fieldBar = new JToolBar();
@@ -88,7 +91,7 @@ public class FindDialog extends JFrame {
                 teachers.clear();
                 for(Teacher teacher : dbStorage.getTeacherList() ) {
                     if (teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentName().getSelectedItem().toString()).getName()
-                            && teacher.getAcademicTitle() == AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString())) {
+                            && teacher.getAcademicTitle() == AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString()).getName()) {
                         teachers.add(teacher);
                     }
                 }

@@ -19,10 +19,28 @@ public class SecondBarController {
     private JSlider slider;
     private JLabel sliderMark;
     private int rowOnPage;
+    private int numberOfPage = 1;
+    private int lastPage ;
 
+    public int getLastPage() {
+        return lastPage;
+    }
+
+    public void setLastPage(int lastPage) {
+        this.lastPage = lastPage;
+    }
+
+    public int getNumberOfPage() {
+        return numberOfPage;
+    }
+
+    public void setNumberOfPage(int numberOfPage) {
+        this.numberOfPage = numberOfPage;
+    }
 
     private SecondBarController() {
     }
+
 
     public static SecondBarController getInstance() {
         if (instance == null) {
@@ -43,8 +61,8 @@ public class SecondBarController {
             if (!slider.getValueIsAdjusting()) {
                 rowOnPage = slider.getValue();
                 sliderMark.setText(String.valueOf(rowOnPage));
-
-                changeNumberOfPage();
+                SecondBarController.getInstance().setNumberOfPage(1);
+                TableController.getInstance().firstPage();
             }
         }
 
