@@ -2,6 +2,7 @@ package by.bsuir.Shaliov.ppvis.laba2.model;
 
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.ColumnNames;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
+import com.sun.javafx.charts.Legend;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
@@ -59,6 +60,7 @@ public class TableModel extends AbstractTableModel {
     public int getRowCount() {
         return teacherList.size();
     }
+
     @Override
     public int getColumnCount() {
         return column;

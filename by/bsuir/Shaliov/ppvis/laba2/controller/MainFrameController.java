@@ -55,6 +55,9 @@ public class MainFrameController {
         mainFrame.repaint();
     }
 
+    public void refresh() {
+        mainFrame.revalidate();
+    }
 
     public static MainFrameController getInstance() {
         if (instance == null) {

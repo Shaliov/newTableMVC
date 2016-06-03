@@ -46,7 +46,7 @@ public class FindDialog extends JFrame {
 
         teachers = new ArrayList<>();
         tableComponent = new TableComponent(teachers);
-
+        TableModel.getInstance().setTempList(teachers);
         add(tableComponent.getScrollPane());
 
         JToolBar fieldBar = new JToolBar();

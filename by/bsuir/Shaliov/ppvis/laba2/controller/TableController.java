@@ -5,6 +5,7 @@ import by.bsuir.Shaliov.ppvis.laba2.model.TableModel;
 import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,12 +34,12 @@ public class TableController {
 
         if (DBStorage.getInstance().getTeacherList().size() % rowOnPage == 0) {
             SecondBarController.getInstance().setLastPage((int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / rowOnPage)));
-            SecondBarController.getInstance().setNumberOfPage(lastPage);
+            SecondBarController.getInstance().setNumberOfPage(SecondBarController.getInstance().getLastPage());
             SecondBarController.getInstance().changeNumberOfPage(TableModel.getInstance().getTempList((rowOnPage * SecondBarController.getInstance().getLastPage()) - rowOnPage,
                     TableModel.getInstance().getTempList().size()));
         } else {
             SecondBarController.getInstance().setLastPage((int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / rowOnPage) + 1));
-            SecondBarController.getInstance().setNumberOfPage(lastPage);
+            SecondBarController.getInstance().setNumberOfPage(SecondBarController.getInstance().getLastPage());
             SecondBarController.getInstance().changeNumberOfPage(TableModel.getInstance().getTempList(rowOnPage * (SecondBarController.getInstance().getLastPage() - 1),
                     TableModel.getInstance().getTempList().size()));
         }
@@ -57,6 +58,7 @@ public class TableController {
     public void next() {
         int numberOfPage = SecondBarController.getInstance().getNumberOfPage();
         int rowOnPage = SecondBarController.getInstance().getRowOnPage();
+
         if (DBStorage.getInstance().getTeacherList().size() % rowOnPage == 0) {
             SecondBarController.getInstance().setLastPage((int) Math.round((double) (TableModel.getInstance().getTempList().size() / rowOnPage)));
         }
@@ -80,6 +82,13 @@ public class TableController {
         }
     }
 
+    public void clear() {
+        List <Teacher> teacherList = new ArrayList<>();
+        teacherList.clear();
+        TableModel.getInstance().setTeacherList(teacherList);
+        TableModel.getInstance().setTempList(teacherList);
+        refresh();
+    }
 
     public static TableController getInstance() {
         if (instance == null) {
