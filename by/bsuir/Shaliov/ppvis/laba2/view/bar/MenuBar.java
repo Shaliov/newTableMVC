@@ -5,7 +5,9 @@ import by.bsuir.Shaliov.ppvis.laba2.XML.WriteXML;
 import by.bsuir.Shaliov.ppvis.laba2.controller.MainFrameController;
 import by.bsuir.Shaliov.ppvis.laba2.controller.SecondBarController;
 import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
+import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
 import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
+import com.sun.org.apache.xerces.internal.impl.dv.DVFactoryException;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -56,8 +58,9 @@ public class MenuBar extends JMenuBar {
         closeFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+                DBStorage.getInstance().getTeacherList().clear();
+                TableController.getInstance().refresh();
+                MainFrameController.getInstance().refresh();
             }
         });
         fileMenu.add(closeFile);

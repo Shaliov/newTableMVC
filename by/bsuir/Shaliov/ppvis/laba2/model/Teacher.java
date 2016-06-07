@@ -43,7 +43,7 @@ public class Teacher {
         this.fio = name + " " + secondaryName + " " + middleName;
     }
     public void setDepartmentName(String departmentName) {
-        this.departmentName = Departments.valueOf(departmentName);
+        this.departmentName = departmentName;
     }
     public void setFaculty(String faculty) {
         this.faculty = faculty;
@@ -108,7 +108,7 @@ public class Teacher {
         this.middleName = middleName;
     }
 
-    public void setDepartmentName(Departments departmentName) {
+    public void setDepartmentName(Object departmentName) {
         this.departmentName = departmentName;
     }
 
