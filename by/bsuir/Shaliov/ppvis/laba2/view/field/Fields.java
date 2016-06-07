@@ -16,7 +16,7 @@ public class Fields {
     private JTextField name;
     private JTextField secondaryName;
     private JTextField middleName;
-    private JComboBox departmentName;
+    private JComboBox<Departments> departmentComboBox;
     private JComboBox faculty;
     private JComboBox academicTitle;
     private JComboBox academicDegree;
@@ -69,11 +69,11 @@ public class Fields {
         Box departmentNameBox = Box.createHorizontalBox();
         JLabel departmentNameLabel = new JLabel("Название кафедры:");
         departmentNameLabel.setPreferredSize(new Dimension(130, departmentNameLabel.getHeight()));
-        departmentName = new JComboBox(nameOfDepartment.values());
+        departmentComboBox = new JComboBox<>(nameOfDepartment.values());
 
         departmentNameBox.add(departmentNameLabel);
         departmentNameBox.add(Box.createHorizontalStrut(6));
-        departmentNameBox.add(departmentName);
+        departmentNameBox.add(departmentComboBox);
         boxPanel.add(departmentNameBox);
         boxPanel.add(Box.createVerticalStrut(12));
     }
@@ -128,8 +128,8 @@ public class Fields {
         return middleName;
     }
 
-    public JComboBox getDepartmentName() {
-        return departmentName;
+    public JComboBox<Departments> getDepartmentComboBox() {
+        return departmentComboBox;
     }
 
     public JComboBox getFaculty() {

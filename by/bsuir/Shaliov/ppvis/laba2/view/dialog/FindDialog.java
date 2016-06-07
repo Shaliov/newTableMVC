@@ -1,6 +1,5 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.dialog;
 
-import by.bsuir.Shaliov.ppvis.laba2.controller.SecondBarController;
 import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicTitles;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
@@ -30,6 +29,8 @@ public class FindDialog extends JFrame {
     private DBStorage dbStorage = DBStorage.getInstance();
     private TableController tableController = TableController.getInstance();
     private SecondBar secondBar;
+
+    private TableModel tableModel;
 
 
     public FindDialog() {
@@ -64,7 +65,7 @@ public class FindDialog extends JFrame {
 
 
         setSize(900, 350);
-        setUndecorated(true);
+//        setUndecorated(true);
         setVisible(true);
     }
 
@@ -75,11 +76,12 @@ public class FindDialog extends JFrame {
                 String fio = fields.getName().getText() + " " + fields.getSecondaryName().getText() + " " + fields.getMiddleName().getText();
                 for(Teacher teacher : dbStorage.getTeacherList() ){
                     if (teacher.getFio().equals(fio)
-                            && teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentName().getSelectedItem().toString()).getName()) {
+                            && teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentComboBox().getSelectedItem().toString()).getName()) {
                         teachers.add(teacher);
                     }
                 }
-                tableController.refresh();
+                TableModel.getInstance().setTempList(teachers);
+                TableController.getInstance().refresh();
                 repaint();
 
             }
@@ -90,7 +92,7 @@ public class FindDialog extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 teachers.clear();
                 for(Teacher teacher : dbStorage.getTeacherList() ) {
-                    if (teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentName().getSelectedItem().toString()).getName()
+                    if (teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentComboBox().getSelectedItem().toString()).getName()
                             && teacher.getAcademicTitle() == AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString()).getName()) {
                         teachers.add(teacher);
                     }
@@ -106,8 +108,10 @@ public class FindDialog extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 teachers.clear();
                 for(Teacher teacher : dbStorage.getTeacherList() ){
-                    if (teacher.getFaculty() == Facultyes.valueOf(fields.getFaculty().getSelectedItem().toString()).getName()
-                            && teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentName().getSelectedItem().toString()).getName()) {
+                    JComboBox faculty = fields.getFaculty();
+                    String name = faculty.getSelectedItem().toString();
+                    if (teacher.getFaculty() == Facultyes.valueOf(name).getName()
+                            && teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentComboBox().getSelectedItem().toString()).getName()) {
                         teachers.add(teacher);
                     }
                 }

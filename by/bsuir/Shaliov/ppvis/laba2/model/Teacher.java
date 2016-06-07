@@ -1,5 +1,8 @@
 package by.bsuir.Shaliov.ppvis.laba2.model;
 
+import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
+import static by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments.*;
+
 /**
  * Created by Andrey on 5/30/2016.
  */
@@ -33,13 +36,14 @@ public class Teacher {
         this.fio = name + " " + secondaryName + " " + middleName;
         this.academicTitle = academicTitle;
         this.academicDegree = academicDegree;
+
     }
 
     public void setFio(String name, String secondaryName, String middleName) {
         this.fio = name + " " + secondaryName + " " + middleName;
     }
     public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+        this.departmentName = Departments.valueOf(departmentName);
     }
     public void setFaculty(String faculty) {
         this.faculty = faculty;
@@ -104,7 +108,7 @@ public class Teacher {
         this.middleName = middleName;
     }
 
-    public void setDepartmentName(Object departmentName) {
+    public void setDepartmentName(Departments departmentName) {
         this.departmentName = departmentName;
     }
 

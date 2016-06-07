@@ -3,8 +3,6 @@ package by.bsuir.Shaliov.ppvis.laba2.controller;
 import by.bsuir.Shaliov.ppvis.laba2.model.TableModel;
 import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
-import by.bsuir.Shaliov.ppvis.laba2.view.frame.MainFrame;
-import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -20,7 +18,7 @@ public class SecondBarController {
     private JLabel sliderMark;
     private int rowOnPage;
     private int numberOfPage = 1;
-    private int lastPage ;
+    private int lastPage;
 
     public int getLastPage() {
         return lastPage;
@@ -49,32 +47,25 @@ public class SecondBarController {
         return instance;
     }
 
-    public SliderListener addSlideListener() {
-        return new SliderListener();
-    }
-
-    class SliderListener implements ChangeListener {
-
-        @Override
-        public void stateChanged(ChangeEvent e) {
+    public ChangeListener addSlideListener() {
+        return e -> {
             slider = (JSlider) e.getSource();
             if (!slider.getValueIsAdjusting()) {
                 rowOnPage = slider.getValue();
                 sliderMark.setText(String.valueOf(rowOnPage));
-                SecondBarController.getInstance().setNumberOfPage(1);
+                SecondBarController.this.setNumberOfPage(1);
                 TableController.getInstance().firstPage();
             }
-        }
-
+        };
     }
 
     public void changeNumberOfPage() {
         TableModel tableModel = TableModel.getInstance();
-        if(rowOnPage < DBStorage.getInstance().getTeacherList().size() ) {
-            tableModel.setTeacherList(DBStorage.getInstance().getTeacherList(0, rowOnPage));
-        }
-        else {
-            tableModel.setTeacherList(DBStorage.getInstance().getTeacherList());
+        if (rowOnPage < DBStorage.getInstance().getTeacherList().size()) {
+            tableModel.setTeacherList(/*DBStorage.getInstance().getTeacherList(0, rowOnPage)*/
+                    tableModel.getTempList(0, rowOnPage));
+        } else {
+            tableModel.setTeacherList(/*DBStorage.getInstance().getTeacherList()*/ tableModel.getTempList());
         }
         TableController.getInstance().refresh();
     }

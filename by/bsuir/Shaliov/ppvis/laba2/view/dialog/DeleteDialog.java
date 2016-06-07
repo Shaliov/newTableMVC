@@ -17,6 +17,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Created by Andrey on 5/31/2016.
@@ -94,24 +96,21 @@ public class DeleteDialog extends JFrame {
     private void findButtons(Box boxPanel) {
         Box deleteFioDepartmentNameBox = Box.createHorizontalBox();
         JButton findFioDepartmentName = new JButton("ФИО + кафедра");
-        findFioDepartmentName.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int numberOfnoted = 0;
-                String fio = fields.getName().getText() + " " + fields.getSecondaryName().getText() + " " + fields.getMiddleName().getText();
-                for (Iterator<Teacher> teacherIterator = dbStorage.getTeacherList().iterator(); teacherIterator.hasNext();) {
-                    Teacher teacher = teacherIterator.next();
-                    if (teacher.getFio().equals(fio)
-                            && teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentName().getSelectedItem().toString()).getName())  {
-                        teacherIterator.remove();
-                        numberOfnoted++;
-                    }
+        findFioDepartmentName.addActionListener(e -> {
+            int numberOfnoted = 0;
+            String fio = fields.getName().getText() + " " + fields.getSecondaryName().getText() + " " + fields.getMiddleName().getText();
+            for (Iterator<Teacher> teacherIterator = dbStorage.getTeacherList().iterator(); teacherIterator.hasNext();) {
+                Teacher teacher = teacherIterator.next();
+                if (teacher.getFio().equals(fio)
+                        && teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentComboBox().getSelectedItem().toString()).getName())  {
+                    teacherIterator.remove();
+                    numberOfnoted++;
                 }
-                SecondBarController.getInstance().changeNumberOfPage();
-                JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
-                        null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
-
             }
+            SecondBarController.getInstance().changeNumberOfPage();
+            JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
+                    null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
+
         });
         deleteFioDepartmentNameBox.add(Box.createHorizontalGlue());
         deleteFioDepartmentNameBox.add(findFioDepartmentName);
@@ -119,43 +118,37 @@ public class DeleteDialog extends JFrame {
         boxPanel.add(deleteFioDepartmentNameBox);
 
         JButton deleteAcademicTitleDepartmentName = new JButton("кафедра + учёное звание");
-        deleteAcademicTitleDepartmentName.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int numberOfnoted = 0;
-                for (Iterator<Teacher> teacherIterator = dbStorage.getTeacherList().iterator(); teacherIterator.hasNext();) {
-                    Teacher teacher = teacherIterator.next();
-                    if (teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentName().getSelectedItem().toString()).getName()
-                            && teacher.getAcademicTitle() == AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString()).getName())  {
-                        teacherIterator.remove();
-                        numberOfnoted++;
-                    }
+        deleteAcademicTitleDepartmentName.addActionListener(e -> {
+            int numberOfnoted = 0;
+            for (Iterator<Teacher> teacherIterator = dbStorage.getTeacherList().iterator(); teacherIterator.hasNext();) {
+                Teacher teacher = teacherIterator.next();
+                if (teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentComboBox().getSelectedItem().toString()).getName()
+                        && teacher.getAcademicTitle() == AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString()).getName())  {
+                    teacherIterator.remove();
+                    numberOfnoted++;
                 }
-                SecondBarController.getInstance().changeNumberOfPage();
-                JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
-                        null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
-
             }
+            SecondBarController.getInstance().changeNumberOfPage();
+            JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
+                    null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
+
         });
 
         JButton deleteFacultyDepartmentName = new JButton("факультет + кафедра");
-        deleteFacultyDepartmentName.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int numberOfnoted = 0;
-                for (Iterator<Teacher> teacherIterator = dbStorage.getTeacherList().iterator(); teacherIterator.hasNext();) {
-                    Teacher teacher = teacherIterator.next();
-                    if (teacher.getFaculty() == Facultyes.valueOf(fields.getFaculty().getSelectedItem().toString()).getName()
-                            && teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentName().getSelectedItem().toString()).getName())  {
-                        teacherIterator.remove();
-                        numberOfnoted++;
-                    }
+        deleteFacultyDepartmentName.addActionListener(e -> {
+            int numberOfnoted = 0;
+            for (Iterator<Teacher> teacherIterator = dbStorage.getTeacherList().iterator(); teacherIterator.hasNext();) {
+                Teacher teacher = teacherIterator.next();
+                if (teacher.getFaculty() == Facultyes.valueOf(fields.getFaculty().getSelectedItem().toString()).getName()
+                        && teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentComboBox().getSelectedItem().toString()).getName())  {
+                    teacherIterator.remove();
+                    numberOfnoted++;
                 }
-                SecondBarController.getInstance().changeNumberOfPage();
-                JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
-                        null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
-
             }
+            SecondBarController.getInstance().changeNumberOfPage();
+            JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
+                    null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
+
         });
         deleteFioDepartmentNameBox.add(deleteAcademicTitleDepartmentName);
         deleteFioDepartmentNameBox.add(Box.createHorizontalStrut(6));

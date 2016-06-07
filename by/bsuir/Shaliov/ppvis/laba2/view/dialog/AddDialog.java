@@ -54,7 +54,7 @@ public class AddDialog extends JFrame {
                         fields.getMiddleName().getText()).equals("")) {
                     addDialogController.addTeacherToDB(
                             Facultyes.valueOf(fields.getFaculty().getSelectedItem().toString()).getName(),
-                            Departments.valueOf(fields.getDepartmentName().getSelectedItem().toString()).getName(),
+                            Departments.valueOf(fields.getDepartmentComboBox().getSelectedItem().toString()).getName(),
                             fields.getName().getText(),
                             fields.getSecondaryName().getText(),
                             fields.getMiddleName().getText(),

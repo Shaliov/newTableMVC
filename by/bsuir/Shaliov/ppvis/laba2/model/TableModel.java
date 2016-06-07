@@ -14,8 +14,8 @@ import java.util.List;
 public class TableModel extends AbstractTableModel {
     private static TableModel instance = null;
     private DBStorage dbStorage = DBStorage.getInstance();
+    private List<Teacher> tempList = dbStorage.getTeacherList();
     private List<Teacher> teacherList = dbStorage.getTeacherList() ;
-    private List<Teacher> tempList  = dbStorage.getTeacherList() ;
     public static final int column = 5;
 
     public List<Teacher> getTempList() {

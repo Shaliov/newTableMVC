@@ -14,6 +14,8 @@ import java.util.List;
 public class TableController {
     private static TableController instance = null;
 
+    SecondBarController secondBarController = SecondBarController.getInstance();
+
     private TableController() {
 
     }
@@ -29,18 +31,19 @@ public class TableController {
     }
 
     public void lastPage() {
-        int rowOnPage = SecondBarController.getInstance().getRowOnPage();
-        int lastPage = SecondBarController.getInstance().getLastPage();
+
+        int rowOnPage = secondBarController.getRowOnPage();
+        int lastPage = secondBarController.getLastPage();
 
         if (DBStorage.getInstance().getTeacherList().size() % rowOnPage == 0) {
-            SecondBarController.getInstance().setLastPage((int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / rowOnPage)));
-            SecondBarController.getInstance().setNumberOfPage(SecondBarController.getInstance().getLastPage());
-            SecondBarController.getInstance().changeNumberOfPage(TableModel.getInstance().getTempList((rowOnPage * SecondBarController.getInstance().getLastPage()) - rowOnPage,
+            secondBarController.setLastPage((int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / rowOnPage)));
+            secondBarController.setNumberOfPage(secondBarController.getLastPage());
+            secondBarController.changeNumberOfPage(TableModel.getInstance().getTempList((rowOnPage * secondBarController.getLastPage()) - rowOnPage,
                     TableModel.getInstance().getTempList().size()));
         } else {
-            SecondBarController.getInstance().setLastPage((int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / rowOnPage) + 1));
-            SecondBarController.getInstance().setNumberOfPage(SecondBarController.getInstance().getLastPage());
-            SecondBarController.getInstance().changeNumberOfPage(TableModel.getInstance().getTempList(rowOnPage * (SecondBarController.getInstance().getLastPage() - 1),
+            secondBarController.setLastPage((int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / rowOnPage) + 1));
+            secondBarController.setNumberOfPage(secondBarController.getLastPage());
+            secondBarController.changeNumberOfPage(TableModel.getInstance().getTempList(rowOnPage * (secondBarController.getLastPage() - 1),
                     TableModel.getInstance().getTempList().size()));
         }
     }
