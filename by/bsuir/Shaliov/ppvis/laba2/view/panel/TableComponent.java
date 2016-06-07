@@ -1,8 +1,11 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.panel;
 
 
+import by.bsuir.Shaliov.ppvis.laba2.controller.SecondBarController;
+import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
 import by.bsuir.Shaliov.ppvis.laba2.model.TableModel;
 import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
+import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
 import by.bsuir.Shaliov.ppvis.laba2.view.bar.SecondBar;
 
 import javax.swing.*;
@@ -14,18 +17,15 @@ import java.util.*;
  */
 public class TableComponent extends JPanel {
 
-//    private static TableComponent instance = null;
     private JScrollPane scrollPane;
-
-//    public static TableComponent getInstance() {
-//        if (instance == null) {
-//            instance = new TableComponent();
-//        }
-//        return instance;
-//    }
+    private TableModel tableModel;
 
     public TableComponent() {
-        TableModel tableModel = TableModel.getInstance();
+        tableModel = new TableModel();
+        SecondBarController.getInstance().setTableModel(tableModel);
+        tableModel.setTeacherList(DBStorage.getInstance().getTeacherList());
+        tableModel.setTempList(DBStorage.getInstance().getTeacherList());
+        TableController.getInstance().setTableModel(tableModel);
         JTable table = new JTable(tableModel);
         Dimension dimension = new Dimension(100, 1000);
         table.setPreferredSize(dimension);
@@ -36,8 +36,10 @@ public class TableComponent extends JPanel {
     }
 
     public TableComponent(java.util.List<Teacher> teacherList) {
-        TableModel tableModel = new TableModel(teacherList);
+        tableModel = new TableModel(teacherList);
         tableModel.setTeacherList(teacherList);
+        SecondBarController.getInstance().setTableModel(tableModel);
+        TableController.getInstance().setTableModel(tableModel);
         JTable table = new JTable(tableModel);
         Dimension dimension = new Dimension(100, 1000);
         table.setPreferredSize(dimension);
@@ -47,6 +49,14 @@ public class TableComponent extends JPanel {
         add(scrollPane);
     }
 
+
+    public TableModel getTableModel() {
+        return tableModel;
+    }
+
+    public void setTableModel(TableModel tableModel) {
+        this.tableModel = tableModel;
+    }
 
     public JScrollPane getScrollPane() {
         return scrollPane;

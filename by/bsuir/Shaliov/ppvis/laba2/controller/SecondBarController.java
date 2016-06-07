@@ -5,7 +5,6 @@ import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.util.List;
 
@@ -19,22 +18,8 @@ public class SecondBarController {
     private int rowOnPage;
     private int numberOfPage = 1;
     private int lastPage;
+    private TableModel tableModel;
 
-    public int getLastPage() {
-        return lastPage;
-    }
-
-    public void setLastPage(int lastPage) {
-        this.lastPage = lastPage;
-    }
-
-    public int getNumberOfPage() {
-        return numberOfPage;
-    }
-
-    public void setNumberOfPage(int numberOfPage) {
-        this.numberOfPage = numberOfPage;
-    }
 
     private SecondBarController() {
     }
@@ -60,18 +45,16 @@ public class SecondBarController {
     }
 
     public void changeNumberOfPage() {
-        TableModel tableModel = TableModel.getInstance();
         if (rowOnPage < DBStorage.getInstance().getTeacherList().size()) {
-            tableModel.setTeacherList(/*DBStorage.getInstance().getTeacherList(0, rowOnPage)*/
-                    tableModel.getTempList(0, rowOnPage));
+            tableModel.setTeacherList(DBStorage.getInstance().getTeacherList(0, rowOnPage));
         } else {
-            tableModel.setTeacherList(/*DBStorage.getInstance().getTeacherList()*/ tableModel.getTempList());
+            tableModel.setTeacherList(DBStorage.getInstance().getTeacherList());
         }
         TableController.getInstance().refresh();
     }
 
     public void changeNumberOfPage(List<Teacher> teachers) {
-        TableModel.getInstance().setTeacherList(teachers);
+        tableModel.setTeacherList(teachers);
         TableController.getInstance().refresh();
     }
 
@@ -97,6 +80,30 @@ public class SecondBarController {
 
     public void setRowOnPage(int rowOnPage) {
         this.rowOnPage = rowOnPage;
+    }
+
+    public int getLastPage() {
+        return lastPage;
+    }
+
+    public void setLastPage(int lastPage) {
+        this.lastPage = lastPage;
+    }
+
+    public int getNumberOfPage() {
+        return numberOfPage;
+    }
+
+    public void setNumberOfPage(int numberOfPage) {
+        this.numberOfPage = numberOfPage;
+    }
+
+    public TableModel getTableModel() {
+        return tableModel;
+    }
+
+    public void setTableModel(TableModel tableModel) {
+        this.tableModel = tableModel;
     }
 }
 

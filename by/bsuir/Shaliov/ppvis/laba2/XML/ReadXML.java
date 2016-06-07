@@ -25,8 +25,10 @@ import java.util.List;
 public class ReadXML {
     private JFileChooser fileChooser;
     private File file;
+    private TableModel tableModel;
 
-    public ReadXML() {
+    public ReadXML(TableModel tableModel) {
+        this.tableModel = tableModel;
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -51,7 +53,7 @@ public class ReadXML {
                     DBStorage.getInstance().add(teacher);
                     TableController.getInstance().refresh();
                 }
-                TableModel.getInstance().setTempList(DBStorage.getInstance().getTeacherList());
+                tableModel.setTeacherList(DBStorage.getInstance().getTeacherList());
             }
         } catch (ParserConfigurationException e1) {
             e1.printStackTrace();

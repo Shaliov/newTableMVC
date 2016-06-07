@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class TableController {
     private static TableController instance = null;
+    private TableModel tableModel;
 
     SecondBarController secondBarController = SecondBarController.getInstance();
 
@@ -21,7 +22,7 @@ public class TableController {
     }
 
     public void refresh() {
-        TableModel.getInstance().fireTableDataChanged();
+        tableModel.fireTableDataChanged();
     }
 
 
@@ -35,16 +36,16 @@ public class TableController {
         int rowOnPage = secondBarController.getRowOnPage();
         int lastPage = secondBarController.getLastPage();
 
-        if (DBStorage.getInstance().getTeacherList().size() % rowOnPage == 0) {
-            secondBarController.setLastPage((int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / rowOnPage)));
+        if (tableModel.getTempList().size() % rowOnPage == 0) {
+            secondBarController.setLastPage((int) Math.round((double) (tableModel.getTempList().size() / rowOnPage)));
             secondBarController.setNumberOfPage(secondBarController.getLastPage());
-            secondBarController.changeNumberOfPage(TableModel.getInstance().getTempList((rowOnPage * secondBarController.getLastPage()) - rowOnPage,
-                    TableModel.getInstance().getTempList().size()));
+            secondBarController.changeNumberOfPage(tableModel.getTempList((rowOnPage * secondBarController.getLastPage()) - rowOnPage,
+                    tableModel.getTempList().size()));
         } else {
-            secondBarController.setLastPage((int) Math.round((double) (DBStorage.getInstance().getTeacherList().size() / rowOnPage) + 1));
+            secondBarController.setLastPage((int) Math.round((double) (tableModel.getTempList().size() / rowOnPage) + 1));
             secondBarController.setNumberOfPage(secondBarController.getLastPage());
-            secondBarController.changeNumberOfPage(TableModel.getInstance().getTempList(rowOnPage * (secondBarController.getLastPage() - 1),
-                    TableModel.getInstance().getTempList().size()));
+            secondBarController.changeNumberOfPage(tableModel.getTempList(rowOnPage * (secondBarController.getLastPage() - 1),
+                    tableModel.getTempList().size()));
         }
     }
 
@@ -53,7 +54,7 @@ public class TableController {
             SecondBarController.getInstance().setNumberOfPage(SecondBarController.getInstance().getNumberOfPage() - 1);
             int numberOfPage = SecondBarController.getInstance().getNumberOfPage();
             int rowOnPage = SecondBarController.getInstance().getRowOnPage();
-            SecondBarController.getInstance().changeNumberOfPage(TableModel.getInstance().getTempList(rowOnPage * numberOfPage - rowOnPage,
+            SecondBarController.getInstance().changeNumberOfPage(tableModel.getTempList(rowOnPage * numberOfPage - rowOnPage,
                     rowOnPage * numberOfPage));
         }
     }
@@ -63,21 +64,22 @@ public class TableController {
         int rowOnPage = SecondBarController.getInstance().getRowOnPage();
 
         if (DBStorage.getInstance().getTeacherList().size() % rowOnPage == 0) {
-            SecondBarController.getInstance().setLastPage((int) Math.round((double) (TableModel.getInstance().getTempList().size() / rowOnPage)));
+            SecondBarController.getInstance().setLastPage((int) Math.round((double) (tableModel.getTempList().size() / rowOnPage)));
         }
         else {
-            SecondBarController.getInstance().setLastPage((int) Math.round((double) (TableModel.getInstance().getTempList().size() / rowOnPage) + 1));
+            SecondBarController.getInstance().setLastPage((int) Math.round((double) (tableModel.getTempList().size() / rowOnPage) + 1));
         }
         int lastPage = SecondBarController.getInstance().getLastPage();
         if (numberOfPage != lastPage) {
                 SecondBarController.getInstance().setNumberOfPage(numberOfPage + 1);
-            if(TableModel.getInstance().getTempList().size() % rowOnPage != 0 && numberOfPage + 1 == lastPage) {
-                SecondBarController.getInstance().changeNumberOfPage(TableModel.getInstance().getTempList(rowOnPage * numberOfPage,
-                        TableModel.getInstance().getTempList().size()));
+            if(tableModel.getTempList().size() % rowOnPage != 0 && numberOfPage + 1 == lastPage) {
+                SecondBarController.getInstance().changeNumberOfPage(tableModel.getTempList(rowOnPage * numberOfPage,
+                        tableModel.getTempList().size()));
             }
             else {
-                SecondBarController.getInstance().changeNumberOfPage(TableModel.getInstance().getTempList(rowOnPage * numberOfPage,
-                        rowOnPage * (numberOfPage + 1)));}
+                SecondBarController.getInstance().changeNumberOfPage(tableModel.getTempList(rowOnPage * numberOfPage,
+                        rowOnPage * (numberOfPage + 1)));
+            }
             }
          else if (numberOfPage == lastPage) {
             SecondBarController.getInstance().setNumberOfPage(lastPage);
@@ -88,8 +90,7 @@ public class TableController {
     public void clear() {
         List <Teacher> teacherList = new ArrayList<>();
         teacherList.clear();
-        TableModel.getInstance().setTeacherList(teacherList);
-        TableModel.getInstance().setTempList(teacherList);
+        tableModel.setTeacherList(teacherList);
         refresh();
     }
 
@@ -100,4 +101,11 @@ public class TableController {
         return instance;
     }
 
+    public TableModel getTableModel() {
+        return tableModel;
+    }
+
+    public void setTableModel(TableModel tableModel) {
+        this.tableModel = tableModel;
+    }
 }

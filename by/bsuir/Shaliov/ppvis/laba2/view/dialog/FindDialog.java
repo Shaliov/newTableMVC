@@ -1,5 +1,6 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.dialog;
 
+import by.bsuir.Shaliov.ppvis.laba2.controller.SecondBarController;
 import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicTitles;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
@@ -28,12 +29,11 @@ public class FindDialog extends JFrame {
     private Fields fields;
     private DBStorage dbStorage = DBStorage.getInstance();
     private TableController tableController = TableController.getInstance();
-    private SecondBar secondBar;
-
     private TableModel tableModel;
-
+    private TableModel tempModel;
 
     public FindDialog() {
+        tempModel = TableController.getInstance().getTableModel();
         setName("Введите данные преподавателя");
         Box boxPanel = Box.createVerticalBox();
         fields = new Fields();
@@ -47,7 +47,10 @@ public class FindDialog extends JFrame {
 
         teachers = new ArrayList<>();
         tableComponent = new TableComponent(teachers);
-        TableModel.getInstance().setTempList(teachers);
+        tableModel = tableComponent.getTableModel();
+        SecondBarController.getInstance().setTableModel(tableModel);
+        tableController.setTableModel(tableModel);
+
         add(tableComponent.getScrollPane());
 
         JToolBar fieldBar = new JToolBar();
@@ -65,7 +68,7 @@ public class FindDialog extends JFrame {
 
 
         setSize(900, 350);
-//        setUndecorated(true);
+        setUndecorated(true);
         setVisible(true);
     }
 
@@ -80,8 +83,7 @@ public class FindDialog extends JFrame {
                         teachers.add(teacher);
                     }
                 }
-                TableModel.getInstance().setTempList(teachers);
-                TableController.getInstance().refresh();
+                tableController.refresh();
                 repaint();
 
             }
@@ -125,6 +127,8 @@ public class FindDialog extends JFrame {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                SecondBarController.getInstance().setTableModel(tempModel);
+                TableController.getInstance().setTableModel(tempModel);
                 dispose();
             }
         });

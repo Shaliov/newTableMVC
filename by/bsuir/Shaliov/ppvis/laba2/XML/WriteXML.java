@@ -21,11 +21,12 @@ import java.io.File;
  * Created by Andrey on 5/25/2016.
  */
 public class WriteXML extends AbstractAction {
-    private TableModel model = TableModel.getInstance();
+    private TableModel model;
     private JFileChooser fileChooser;
     private File file;
 
-    public WriteXML() {
+    public WriteXML(TableModel tableModel) {
+        model = tableModel;
     }
 
     public void actionPerformed(ActionEvent e) {

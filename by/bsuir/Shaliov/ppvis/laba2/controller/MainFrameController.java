@@ -6,8 +6,6 @@ import by.bsuir.Shaliov.ppvis.laba2.view.dialog.FindDialog;
 import by.bsuir.Shaliov.ppvis.laba2.view.frame.MainFrame;
 import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
 
-import javax.swing.*;
-import java.util.Base64;
 
 /**
  * Created by Andrey on 5/31/2016.

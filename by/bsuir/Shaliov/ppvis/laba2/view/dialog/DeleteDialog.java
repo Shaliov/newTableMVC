@@ -6,6 +6,7 @@ import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicTitles;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Facultyes;
+import by.bsuir.Shaliov.ppvis.laba2.model.TableModel;
 import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
 import by.bsuir.Shaliov.ppvis.laba2.view.field.Fields;
@@ -65,6 +66,7 @@ public class DeleteDialog extends JFrame {
                 int numberOfnoted = dbStorage.getTeacherList().size();
                 dbStorage.clear();
                 tableController.refresh();
+                MainFrameController.getInstance().refresh(tableComponent);
                 JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
                         null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
             }

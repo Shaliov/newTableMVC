@@ -2,7 +2,7 @@ package by.bsuir.Shaliov.ppvis.laba2.model;
 
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.ColumnNames;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
-import com.sun.javafx.charts.Legend;
+import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
@@ -12,26 +12,18 @@ import java.util.List;
  * Created by Andrey on 5/30/2016.
  */
 public class TableModel extends AbstractTableModel {
-    private static TableModel instance = null;
+
     private DBStorage dbStorage = DBStorage.getInstance();
-    private List<Teacher> tempList = dbStorage.getTeacherList();
-    private List<Teacher> teacherList = dbStorage.getTeacherList() ;
+    private List<Teacher> teacherList ;
+    private List<Teacher> tempList;
     public static final int column = 5;
 
-    public List<Teacher> getTempList() {
-        return tempList;
-    }
 
-    public void setTempList(List<Teacher> tempList) {
-        this.tempList = tempList;
-    }
-
-    private TableModel() {
+    public TableModel() {
     }
 
     public TableModel(List<Teacher> teachers) {
-        instance = getInstance();
-        teacherList = teachers;
+        tempList = teachers;
     }
 
     public static final String columnNames[] = {
@@ -42,15 +34,6 @@ public class TableModel extends AbstractTableModel {
             ColumnNames.ACADEMIC_DEGREE.getName()
     };
 
-
-
-
-    public static TableModel getInstance() {
-        if(instance == null) {
-            instance = new TableModel();
-        }
-        return instance;
-    }
 
     @Override
     public String getColumnName(int column) {
@@ -81,12 +64,20 @@ public class TableModel extends AbstractTableModel {
     public List<Teacher> getTempList(int startIndex, int endIndex) {
         List<Teacher> result = new ArrayList<>();
         for(int i = startIndex; i < endIndex; i++) {
-            result.add(dbStorage.getTeacherList().get(i));
+            result.add(tempList.get(i));
         }
         return result;
     }
 
     public void setTeacherList(List<Teacher> teacherList) {
         this.teacherList = teacherList;
+    }
+
+    public List<Teacher> getTempList() {
+        return tempList;
+    }
+
+    public void setTempList(List<Teacher> tempList) {
+        this.tempList = tempList;
     }
 }

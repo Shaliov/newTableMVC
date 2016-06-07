@@ -1,11 +1,8 @@
 package by.bsuir.Shaliov.ppvis.laba2.controller;
 
-import by.bsuir.Shaliov.ppvis.laba2.model.TableModel;
 import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
-import by.bsuir.Shaliov.ppvis.laba2.view.dialog.AddDialog;
 import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
-import sun.security.timestamp.TSRequest;
 
 /**
  * Created by Andrey on 5/31/2016.

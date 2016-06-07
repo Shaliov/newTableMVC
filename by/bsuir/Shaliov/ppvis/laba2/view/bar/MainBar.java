@@ -1,6 +1,10 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.bar;
 
 import by.bsuir.Shaliov.ppvis.laba2.controller.MainFrameController;
+import by.bsuir.Shaliov.ppvis.laba2.controller.SecondBarController;
+import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
+import by.bsuir.Shaliov.ppvis.laba2.model.TableModel;
+import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +18,7 @@ public class MainBar extends JToolBar {
     public MainBar() {
         addBarMain();
     }
+
     private void addBarMain() {
         AbstractAction newEntry = new AbstractAction("new entry ", new ImageIcon("src\\resources\\add.png")) {
             public void actionPerformed(ActionEvent event) {
