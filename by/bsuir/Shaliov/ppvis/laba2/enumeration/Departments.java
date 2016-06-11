@@ -14,9 +14,6 @@ public enum Departments {
 
     private String name;
 
-    Departments() {
-    }
-
     Departments(String name) {
         this.name = name;
     }

@@ -1,6 +1,7 @@
 package by.bsuir.Shaliov.ppvis.laba2.model;
 
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
+
 import static by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments.*;
 
 /**
@@ -26,6 +27,7 @@ public class Teacher {
         academicDegree = "";
         academicTitle = "";
     }
+
     public Teacher(Object faculty, Object departmentName, String name, String secondaryName,
                    String middleName, Object academicTitle, Object academicDegree) {
         this.faculty = faculty;
@@ -42,15 +44,19 @@ public class Teacher {
     public void setFio(String name, String secondaryName, String middleName) {
         this.fio = name + " " + secondaryName + " " + middleName;
     }
+
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
     }
+
     public void setFaculty(String faculty) {
         this.faculty = faculty;
     }
+
     public void setAcademicTitle(String academicTitle) {
         this.academicTitle = academicTitle;
     }
+
     public void setAcademicDegree(String academicDegree) {
         this.academicDegree = academicDegree;
     }
@@ -71,27 +77,35 @@ public class Teacher {
                 return "";
         }
     }
+
     public String getFio() {
-        return name + " " + secondaryName + " " + middleName ;
+        return name + " " + secondaryName + " " + middleName;
     }
+
     public Object getDepartmentName() {
         return departmentName;
     }
+
     public Object getFaculty() {
         return faculty;
     }
+
     public Object getAcademicTitle() {
         return academicTitle;
     }
+
     public Object getAcademicDegree() {
         return academicDegree;
     }
+
     public String getName() {
         return name;
     }
-    public String  getSecondaryName() {
+
+    public String getSecondaryName() {
         return secondaryName;
     }
+
     public String getMiddleName() {
         return middleName;
     }

@@ -6,7 +6,6 @@ import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicTitles;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Facultyes;
-import by.bsuir.Shaliov.ppvis.laba2.model.TableModel;
 import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
 import by.bsuir.Shaliov.ppvis.laba2.view.field.Fields;
@@ -18,8 +17,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * Created by Andrey on 5/31/2016.
@@ -60,29 +57,23 @@ public class DeleteDialog extends JFrame {
     private void okCancle(Box boxPanel) {
         Box delete = Box.createHorizontalBox();
         JButton deleteButton = new JButton("удалить все");
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int numberOfnoted = dbStorage.getTeacherList().size();
-                dbStorage.clear();
-                tableController.refresh();
-                MainFrameController.getInstance().refresh(tableComponent);
-                JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
-                        null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
-            }
+        deleteButton.addActionListener(e -> {
+            int numberOfnoted = dbStorage.getTeacherList().size();
+            dbStorage.clear();
+            tableController.refresh();
+            MainFrameController.getInstance().refresh(tableComponent);
+            JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
+                    null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
         });
         JButton cancelButton = new JButton("Закрыть");
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                fields.getName().setText("");
-                fields.getSecondaryName().setText("");
-                fields.getMiddleName().setText("");
-                tableController.refresh();
-                SecondBarController.getInstance().changeNumberOfPage();
-                MainFrameController.getInstance().refresh(tableComponent);
-                dispose();
-            }
+        cancelButton.addActionListener(e -> {
+            fields.getName().setText("");
+            fields.getSecondaryName().setText("");
+            fields.getMiddleName().setText("");
+            tableController.refresh();
+            TableController.getInstance().changeNumberOfPage();
+            MainFrameController.getInstance().refresh(tableComponent);
+            dispose();
         });
 
         boxPanel.setBorder(new EmptyBorder(12, 12, 12, 12));
@@ -109,7 +100,7 @@ public class DeleteDialog extends JFrame {
                     numberOfnoted++;
                 }
             }
-            SecondBarController.getInstance().changeNumberOfPage();
+            TableController.getInstance().changeNumberOfPage();
             JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
                     null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
 
@@ -125,12 +116,12 @@ public class DeleteDialog extends JFrame {
             for (Iterator<Teacher> teacherIterator = dbStorage.getTeacherList().iterator(); teacherIterator.hasNext();) {
                 Teacher teacher = teacherIterator.next();
                 if (teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentComboBox().getSelectedItem().toString()).getName()
-                        && teacher.getAcademicTitle() == AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString()).getName())  {
+                        && teacher.getAcademicTitle() == AcademicTitles.valueOf(fields.getAcademicTitleComboBox().getSelectedItem().toString()).getName())  {
                     teacherIterator.remove();
                     numberOfnoted++;
                 }
             }
-            SecondBarController.getInstance().changeNumberOfPage();
+            TableController.getInstance().changeNumberOfPage();
             JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
                     null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
 
@@ -141,13 +132,13 @@ public class DeleteDialog extends JFrame {
             int numberOfnoted = 0;
             for (Iterator<Teacher> teacherIterator = dbStorage.getTeacherList().iterator(); teacherIterator.hasNext();) {
                 Teacher teacher = teacherIterator.next();
-                if (teacher.getFaculty() == Facultyes.valueOf(fields.getFaculty().getSelectedItem().toString()).getName()
+                if (teacher.getFaculty() == Facultyes.valueOf(fields.getFacultyComboBox().getSelectedItem().toString()).getName()
                         && teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentComboBox().getSelectedItem().toString()).getName())  {
                     teacherIterator.remove();
                     numberOfnoted++;
                 }
             }
-            SecondBarController.getInstance().changeNumberOfPage();
+            TableController.getInstance().changeNumberOfPage();
             JOptionPane.showMessageDialog(null, "удалено записей = " + numberOfnoted,
                     null, JOptionPane.INFORMATION_MESSAGE | JOptionPane.OK_OPTION);
 

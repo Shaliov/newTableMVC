@@ -9,8 +9,6 @@ public enum AcademicDegrees {
 
     private String name;
 
-    private AcademicDegrees() {}
-
     AcademicDegrees(String name) {
         this.name = name;
     }

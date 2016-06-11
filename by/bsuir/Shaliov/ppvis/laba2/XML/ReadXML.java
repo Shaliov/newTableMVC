@@ -42,14 +42,14 @@ public class ReadXML {
             fileChooser.setAcceptAllFileFilterUsed(true);
             fileChooser.addChoosableFileFilter(filter);
             int result1 = fileChooser.showOpenDialog(null);
-            if (result1 == JFileChooser.APPROVE_OPTION){
+            if (result1 == JFileChooser.APPROVE_OPTION) {
                 String fileName = fileChooser.getSelectedFile().getAbsolutePath();
                 file = new File(fileName);
 
                 parser.parse(file, saxp);
                 List<Teacher> result = saxp.getTeachers();
                 TableController.getInstance().clear();
-                for(Teacher teacher:result){
+                for (Teacher teacher : result) {
                     DBStorage.getInstance().add(teacher);
                     TableController.getInstance().refresh();
                 }

@@ -17,9 +17,9 @@ public class Fields {
     private JTextField secondaryName;
     private JTextField middleName;
     private JComboBox<Departments> departmentComboBox;
-    private JComboBox faculty;
-    private JComboBox academicTitle;
-    private JComboBox academicDegree;
+    private JComboBox<Facultyes> facultyComboBox;
+    private JComboBox<AcademicTitles> academicTitleComboBox;
+    private JComboBox<AcademicDegrees> academicDegreeComboBox;
     private Departments nameOfDepartment;
     private Facultyes facultyes;
     private AcademicTitles academicTitles;
@@ -65,7 +65,8 @@ public class Fields {
 
 
     }
-    public void departmentName(Box boxPanel){
+
+    public void departmentName(Box boxPanel) {
         Box departmentNameBox = Box.createHorizontalBox();
         JLabel departmentNameLabel = new JLabel("Название кафедры:");
         departmentNameLabel.setPreferredSize(new Dimension(130, departmentNameLabel.getHeight()));
@@ -77,43 +78,45 @@ public class Fields {
         boxPanel.add(departmentNameBox);
         boxPanel.add(Box.createVerticalStrut(12));
     }
+
     public void faculty(Box boxPanel) {
         Box facultyBox = Box.createHorizontalBox();
         JLabel facultyLabel = new JLabel("Факультет:");
         facultyLabel.setPreferredSize(new Dimension(130, facultyLabel.getHeight()));
-        faculty = new JComboBox(facultyes.values());
+        facultyComboBox = new JComboBox(facultyes.values());
 
         facultyBox.add(facultyLabel);
         facultyBox.add(Box.createHorizontalStrut(6));
-        facultyBox.add(faculty);
+        facultyBox.add(facultyComboBox);
         boxPanel.add(facultyBox);
         boxPanel.add(Box.createVerticalStrut(12));
     }
+
     public void academicTitle(Box boxPanel) {
         Box academicTitleBox = Box.createHorizontalBox();
         JLabel academicTitleLabel = new JLabel("ученое звание:");
         academicTitleLabel.setPreferredSize(new Dimension(130, academicTitleLabel.getHeight()));
-        academicTitle = new JComboBox(academicTitles.values());
+        academicTitleComboBox = new JComboBox(academicTitles.values());
 
         academicTitleBox.add(academicTitleLabel);
         academicTitleBox.add(Box.createHorizontalStrut(6));
-        academicTitleBox.add(academicTitle);
+        academicTitleBox.add(academicTitleComboBox);
         boxPanel.add(academicTitleBox);
-        boxPanel.add(Box.createVerticalStrut(12));}
+        boxPanel.add(Box.createVerticalStrut(12));
+    }
+
     public void academicDegree(Box boxPanel) {
         Box academicDegreeBox = Box.createHorizontalBox();
         JLabel academicDegreeLabel = new JLabel("ученая степень:");
         academicDegreeLabel.setPreferredSize(new Dimension(130, academicDegreeLabel.getHeight()));
-        academicDegree = new JComboBox(academicDegrees.values());
+        academicDegreeComboBox = new JComboBox(academicDegrees.values());
 
         academicDegreeBox.add(academicDegreeLabel);
         academicDegreeBox.add(Box.createHorizontalStrut(6));
-        academicDegreeBox.add(academicDegree);
+        academicDegreeBox.add(academicDegreeComboBox);
         boxPanel.add(academicDegreeBox);
         boxPanel.add(Box.createVerticalStrut(12));
     }
-
-
 
 
     public JTextField getName() {
@@ -132,16 +135,16 @@ public class Fields {
         return departmentComboBox;
     }
 
-    public JComboBox getFaculty() {
-        return faculty;
+    public JComboBox getFacultyComboBox() {
+        return facultyComboBox;
     }
 
-    public JComboBox getAcademicTitle() {
-        return academicTitle;
+    public JComboBox getAcademicTitleComboBox() {
+        return academicTitleComboBox;
     }
 
-    public JComboBox getAcademicDegree() {
-        return academicDegree;
+    public JComboBox getAcademicDegreeComboBox() {
+        return academicDegreeComboBox;
     }
 
     public Departments getNameOfDepartment() {

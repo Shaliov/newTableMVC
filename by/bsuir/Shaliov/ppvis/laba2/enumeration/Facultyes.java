@@ -10,8 +10,6 @@ public enum Facultyes {
 
     private String name;
 
-    private Facultyes() {}
-
     Facultyes(String name) {
         this.name = name;
     }

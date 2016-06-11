@@ -38,11 +38,7 @@ public class DBStorage {
     }
 
     public List<Teacher> getTeacherList(int startIndex, int endIndex) {
-        List<Teacher> result = new ArrayList<>();
-        for(int i = startIndex; i < endIndex; i++) {
-            result.add(DBStorage.getInstance().getTeacherList().get(i));
-        }
-        return result;
+        return teacherList.subList(startIndex,endIndex);
     }
 
 }

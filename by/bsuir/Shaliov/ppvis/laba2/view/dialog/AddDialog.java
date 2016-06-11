@@ -2,6 +2,7 @@ package by.bsuir.Shaliov.ppvis.laba2.view.dialog;
 
 import by.bsuir.Shaliov.ppvis.laba2.controller.AddDialogController;
 import by.bsuir.Shaliov.ppvis.laba2.controller.SecondBarController;
+import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicDegrees;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicTitles;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
@@ -50,22 +51,22 @@ public class AddDialog extends JFrame {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!(fields.getName().getText() + fields.getSecondaryName().getText() +
+                if (!(fields.getName().getText() + fields.getSecondaryName().getText() +
                         fields.getMiddleName().getText()).equals("")) {
                     addDialogController.addTeacherToDB(
-                            Facultyes.valueOf(fields.getFaculty().getSelectedItem().toString()).getName(),
+                            Facultyes.valueOf(fields.getFacultyComboBox().getSelectedItem().toString()).getName(),
                             Departments.valueOf(fields.getDepartmentComboBox().getSelectedItem().toString()).getName(),
                             fields.getName().getText(),
                             fields.getSecondaryName().getText(),
                             fields.getMiddleName().getText(),
-                            AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString()).getName(),
-                            AcademicDegrees.valueOf(fields.getAcademicDegree().getSelectedItem().toString()).getName());
+                            AcademicTitles.valueOf(fields.getAcademicTitleComboBox().getSelectedItem().toString()).getName(),
+                            AcademicDegrees.valueOf(fields.getAcademicDegreeComboBox().getSelectedItem().toString()).getName());
 
                 }
                 fields.getName().setText("");
                 fields.getSecondaryName().setText("");
                 fields.getMiddleName().setText("");
-                SecondBarController.getInstance().changeNumberOfPage();
+                TableController.getInstance().changeNumberOfPage();
             }
         });
         JButton cancelButton = new JButton("Закрыть");
@@ -75,7 +76,7 @@ public class AddDialog extends JFrame {
                 fields.getName().setText("");
                 fields.getSecondaryName().setText("");
                 fields.getMiddleName().setText("");
-                SecondBarController.getInstance().changeNumberOfPage();
+                TableController.getInstance().changeNumberOfPage();
                 dispose();
             }
         });

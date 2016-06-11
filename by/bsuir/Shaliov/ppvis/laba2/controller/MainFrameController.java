@@ -18,10 +18,6 @@ public class MainFrameController {
     private FindDialog findDialog;
     private TableComponent tableComponent;
 
-    public void setTableComponent(TableComponent tableComponent) {
-        this.tableComponent = tableComponent;
-    }
-
     private MainFrameController() {
     }
 
@@ -67,4 +63,9 @@ public class MainFrameController {
     public void setMainFrame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
+
+    public void setTableComponent(TableComponent tableComponent) {
+        this.tableComponent = tableComponent;
+    }
+
 }

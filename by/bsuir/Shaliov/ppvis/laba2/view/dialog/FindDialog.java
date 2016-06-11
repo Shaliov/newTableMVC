@@ -1,6 +1,5 @@
 package by.bsuir.Shaliov.ppvis.laba2.view.dialog;
 
-import by.bsuir.Shaliov.ppvis.laba2.controller.SecondBarController;
 import by.bsuir.Shaliov.ppvis.laba2.controller.TableController;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.AcademicTitles;
 import by.bsuir.Shaliov.ppvis.laba2.enumeration.Departments;
@@ -8,7 +7,6 @@ import by.bsuir.Shaliov.ppvis.laba2.enumeration.Facultyes;
 import by.bsuir.Shaliov.ppvis.laba2.model.TableModel;
 import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
-import by.bsuir.Shaliov.ppvis.laba2.view.bar.SecondBar;
 import by.bsuir.Shaliov.ppvis.laba2.view.field.Fields;
 import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
 
@@ -16,7 +14,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 
@@ -48,10 +45,10 @@ public class FindDialog extends JFrame {
         teachers = new ArrayList<>();
         tableComponent = new TableComponent(teachers);
         tableModel = tableComponent.getTableModel();
-        SecondBarController.getInstance().setTableModel(tableModel);
+        TableController.getInstance().setTableModel(tableModel);
         tableController.setTableModel(tableModel);
 
-        add(tableComponent.getScrollPane());
+        add(tableComponent);
 
         JToolBar fieldBar = new JToolBar();
         fieldBar.setOrientation(SwingConstants.VERTICAL);
@@ -63,11 +60,7 @@ public class FindDialog extends JFrame {
         add(findBar, "East");
         findButtons(findBar);
 
-        SecondBar secondBar = new SecondBar();
-        add(secondBar, "South");
-
-
-        setSize(900, 350);
+        setSize(1200, 350);
         setUndecorated(true);
         setVisible(true);
     }
@@ -77,7 +70,7 @@ public class FindDialog extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 teachers.clear();
                 String fio = fields.getName().getText() + " " + fields.getSecondaryName().getText() + " " + fields.getMiddleName().getText();
-                for(Teacher teacher : dbStorage.getTeacherList() ){
+                for (Teacher teacher : dbStorage.getTeacherList()) {
                     if (teacher.getFio().equals(fio)
                             && teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentComboBox().getSelectedItem().toString()).getName()) {
                         teachers.add(teacher);
@@ -93,9 +86,9 @@ public class FindDialog extends JFrame {
         AbstractAction findAcademicTitleDepartmentName = new AbstractAction("кафедра + учёное звание") {
             public void actionPerformed(ActionEvent event) {
                 teachers.clear();
-                for(Teacher teacher : dbStorage.getTeacherList() ) {
+                for (Teacher teacher : dbStorage.getTeacherList()) {
                     if (teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentComboBox().getSelectedItem().toString()).getName()
-                            && teacher.getAcademicTitle() == AcademicTitles.valueOf(fields.getAcademicTitle().getSelectedItem().toString()).getName()) {
+                            && teacher.getAcademicTitle() == AcademicTitles.valueOf(fields.getAcademicTitleComboBox().getSelectedItem().toString()).getName()) {
                         teachers.add(teacher);
                     }
                 }
@@ -109,8 +102,8 @@ public class FindDialog extends JFrame {
         AbstractAction findFacultyDepartmentName = new AbstractAction("факультет + кафедра") {
             public void actionPerformed(ActionEvent event) {
                 teachers.clear();
-                for(Teacher teacher : dbStorage.getTeacherList() ){
-                    JComboBox faculty = fields.getFaculty();
+                for (Teacher teacher : dbStorage.getTeacherList()) {
+                    JComboBox faculty = fields.getFacultyComboBox();
                     String name = faculty.getSelectedItem().toString();
                     if (teacher.getFaculty() == Facultyes.valueOf(name).getName()
                             && teacher.getDepartmentName() == Departments.valueOf(fields.getDepartmentComboBox().getSelectedItem().toString()).getName()) {
@@ -124,13 +117,10 @@ public class FindDialog extends JFrame {
         };
         secondBar.add(findFacultyDepartmentName);
         JButton cancelButton = new JButton("Закрыть");
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SecondBarController.getInstance().setTableModel(tempModel);
-                TableController.getInstance().setTableModel(tempModel);
-                dispose();
-            }
+        cancelButton.addActionListener(e -> {
+            TableController.getInstance().setTableModel(tempModel);
+            TableController.getInstance().setTableModel(tempModel);
+            dispose();
         });
         secondBar.addSeparator(new Dimension(5, 100));
         secondBar.add(cancelButton);

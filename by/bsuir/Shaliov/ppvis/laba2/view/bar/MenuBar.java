@@ -23,6 +23,7 @@ public class MenuBar extends JMenuBar {
         addFileMenu(fileMenu);
         add(fileMenu);
     }
+
     private void addFileMenu(JMenu fileMenu) {
 
         fileMenu.setMnemonic('F');
@@ -38,7 +39,7 @@ public class MenuBar extends JMenuBar {
         saveFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                WriteXML writeXML = new WriteXML(SecondBarController.getInstance().getTableModel());
+                WriteXML writeXML = new WriteXML(TableController.getInstance().getTableModel());
                 writeXML.actionPerformed(e);
 
             }
@@ -48,7 +49,7 @@ public class MenuBar extends JMenuBar {
         openFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ReadXML readXML = new ReadXML(SecondBarController.getInstance().getTableModel());
+                ReadXML readXML = new ReadXML(TableController.getInstance().getTableModel());
                 readXML.actionPerformed(e);
                 TableController.getInstance().firstPage();
             }

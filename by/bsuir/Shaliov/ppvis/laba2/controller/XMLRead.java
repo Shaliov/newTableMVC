@@ -20,6 +20,7 @@ public class XMLRead extends DefaultHandler {
     public void startDocument() throws SAXException {
         teachers = new ArrayList<>();
     }
+
     @Override
     public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
         thisElement = qName;
@@ -27,6 +28,7 @@ public class XMLRead extends DefaultHandler {
             teacher = new Teacher();
         }
     }
+
     @Override
     public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
         thisElement = qName;
@@ -34,6 +36,7 @@ public class XMLRead extends DefaultHandler {
             teachers.add(teacher);
         }
     }
+
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         if (thisElement.equals("name")) {
@@ -59,6 +62,7 @@ public class XMLRead extends DefaultHandler {
         }
 
     }
+
     @Override
     public void endDocument() {
     }
@@ -66,6 +70,7 @@ public class XMLRead extends DefaultHandler {
     public List<Teacher> getTeachers() {
         return teachers;
     }
+
     public Teacher getResult() {
         return teacher;
     }

@@ -22,7 +22,7 @@ public class MainFrame extends JFrame {
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
         setTitle("Table");
-        setSize(screenWidth / 2, screenHeight / 2);
+        setSize(screenWidth / 2 + 10, screenHeight / 2 + 20);
         setLocation(screenWidth / 4, screenHeight / 4);
 
         MenuBar menuBar = new MenuBar();
@@ -32,17 +32,15 @@ public class MainFrame extends JFrame {
         mainBar.setOrientation(SwingConstants.VERTICAL);
         add(mainBar, "West");
 
-        SecondBar secondBar = new SecondBar();
-        add(secondBar, "South");
-
         TableComponent tableComponent = new TableComponent();
         MainFrameController.getInstance().setTableComponent(tableComponent);
         AddDialogController.getInstance().setTableComponent(tableComponent);
-        add(tableComponent.getScrollPane());
+        add(tableComponent);
 
         MainFrameController mainFrameController = MainFrameController.getInstance();
         mainFrameController.setMainFrame(this);
 
+        setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
