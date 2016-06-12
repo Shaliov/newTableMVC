@@ -26,7 +26,6 @@ public class TableController {
 
     }
 
-
     public ChangeListener addSlideListener() {
         return e -> {
             slider = (JSlider) e.getSource();
@@ -34,7 +33,7 @@ public class TableController {
                 rowOnPage = slider.getValue();
                 sliderMark.setText(String.valueOf(rowOnPage));
                 setNumberOfPage(1);
-                TableController.getInstance().firstPage();
+                firstPage();
             }
         };
     }
@@ -45,12 +44,12 @@ public class TableController {
         } else {
             tableModel.setTeacherList(DBStorage.getInstance().getTeacherList());
         }
-        TableController.getInstance().refresh();
+        refresh();
     }
 
     public void changeNumberOfPage(List<Teacher> teachers) {
         tableModel.setTeacherList(teachers);
-        TableController.getInstance().refresh();
+        refresh();
     }
 
 
@@ -138,6 +137,7 @@ public class TableController {
     public void setTableModel(TableModel tableModel) {
         this.tableModel = tableModel;
     }
+
     public JSlider getSlider() {
         return slider;
     }
