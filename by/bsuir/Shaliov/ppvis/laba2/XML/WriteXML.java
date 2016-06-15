@@ -20,21 +20,19 @@ import java.io.File;
 /**
  * Created by Andrey on 5/25/2016.
  */
-public class WriteXML extends AbstractAction {
-    private TableModel model;
+public class WriteXML {
     private JFileChooser fileChooser;
     private File file;
 
-    public WriteXML(TableModel tableModel) {
-        model = tableModel;
+    public WriteXML() {
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed() {
         try {
             DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = f.newDocumentBuilder();
             fileChooser = new JFileChooser();
-            FileXML filter = new FileXML();
+            FileXml filter = new FileXml();
             fileChooser.setAcceptAllFileFilterUsed(true);
             fileChooser.addChoosableFileFilter(filter);
             int result1 = fileChooser.showSaveDialog(null);
@@ -43,7 +41,7 @@ public class WriteXML extends AbstractAction {
                 if (fileChooser.getFileFilter() == filter) {
                     file = new File(fileName + ".xml");
                 } else {
-                    file = new File(fileName);
+                    file = new File(fileName + ".xml");
                 }
                 if (!file.exists()) {
                     file.createNewFile();

@@ -39,8 +39,8 @@ public class MenuBar extends JMenuBar {
         saveFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                WriteXML writeXML = new WriteXML(TableController.getInstance().getTableModel());
-                writeXML.actionPerformed(e);
+                WriteXML writeXML = new WriteXML();
+                writeXML.actionPerformed();
 
             }
         });
@@ -50,7 +50,7 @@ public class MenuBar extends JMenuBar {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ReadXML readXML = new ReadXML(TableController.getInstance().getTableModel());
-                readXML.actionPerformed(e);
+                readXML.actionPerformed();
                 TableController.getInstance().firstPage();
             }
         });

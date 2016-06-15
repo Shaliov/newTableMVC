@@ -6,7 +6,7 @@ import java.io.File;
 /**
  * Created by Andrey on 5/25/2016.
  */
-public class FileXML extends FileFilter {
+public class FileXml extends FileFilter {
     private String ext = ".xml";
 
     public boolean accept(File file) {

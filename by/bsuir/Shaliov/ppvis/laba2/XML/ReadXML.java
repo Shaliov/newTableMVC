@@ -5,8 +5,6 @@ import by.bsuir.Shaliov.ppvis.laba2.controller.XMLRead;
 import by.bsuir.Shaliov.ppvis.laba2.model.TableModel;
 import by.bsuir.Shaliov.ppvis.laba2.model.Teacher;
 import by.bsuir.Shaliov.ppvis.laba2.storage.DBStorage;
-import by.bsuir.Shaliov.ppvis.laba2.view.panel.TableComponent;
-import com.sun.javafx.scene.control.behavior.TableViewBehavior;
 import org.xml.sax.SAXException;
 
 import javax.swing.*;
@@ -31,14 +29,14 @@ public class ReadXML {
         this.tableModel = tableModel;
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed() {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser;
         try {
             parser = factory.newSAXParser();
             XMLRead saxp = new XMLRead();
             fileChooser = new JFileChooser();
-            FileXML filter = new FileXML();
+            FileXml filter = new FileXml();
             fileChooser.setAcceptAllFileFilterUsed(true);
             fileChooser.addChoosableFileFilter(filter);
             int result1 = fileChooser.showOpenDialog(null);
